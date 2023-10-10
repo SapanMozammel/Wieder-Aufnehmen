@@ -2,6 +2,7 @@ import '../scss/style.scss';
 import { dmSans, ebGaramond, sigmaOne } from './fonts';
 
 export const metadata = {
+  metadataBase: new URL("http://localhost:3000"),
   alternates: {
     canonical: 'https://templately.com',
     languages: {
