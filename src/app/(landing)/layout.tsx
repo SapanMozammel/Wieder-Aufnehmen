@@ -1,13 +1,12 @@
-import Header from "@/components/Header";
+import Header from '@/components/landing/Header';
 
 const layout = ({ children }: { children: React.ReactNode }) => {
-    return (
-      <>
+	return (
+		<>
 			<Header />
-        {children}
-      </>
-    );
-  };
-  
-  export default layout;
-  
+			<main>{children}</main>
+		</>
+	);
+};
+
+export default layout;
