@@ -29,9 +29,6 @@ module.exports = {
 				danger: '#E83423',
 				info: '#2196F3',
 			},
-			container: {
-				center: true,
-			},
 			fontFamily: {
 				dm: ['var(--font-dm)'],
 				eb: ['var(--font-eb)'],
@@ -39,5 +36,26 @@ module.exports = {
 			},
 		},
 	},
-	plugins: [],
+	// ...
+	corePlugins: {
+		container: false,
+	},
+	plugins: [
+		function ({ addComponents }) {
+			addComponents({
+				'.container': {
+					marginLeft: 'auto',
+					marginRight: 'auto',
+					maxWidth: '100%',
+					paddingInlineStart: '1.5rem',
+					paddingInlineEnd: '1.5rem',
+					'@screen sm': {
+						maxWidth: '80%',
+						paddingInlineStart: '0',
+						paddingInlineEnd: '0',
+					},
+				},
+			});
+		},
+	],
 };
