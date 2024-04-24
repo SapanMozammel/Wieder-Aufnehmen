@@ -1,3 +1,4 @@
+import Footer from '@/components/landing/Footer';
 import Header from '@/components/landing/Header';
 
 const layout = ({ children }: { children: React.ReactNode }) => {
@@ -5,6 +6,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 		<>
 			<Header />
 			<main>{children}</main>
+			<Footer />
 		</>
 	);
 };
