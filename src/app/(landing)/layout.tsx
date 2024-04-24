@@ -1,7 +1,9 @@
+import Header from "@/components/Header";
+
 const layout = ({ children }: { children: React.ReactNode }) => {
     return (
       <>
-        <h3>Landing Layout</h3>
+			<Header />
         {children}
       </>
     );
