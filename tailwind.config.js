@@ -25,7 +25,7 @@ module.exports = {
 				secondary: '#5C637E',
 				primary: '#4B4DED',
 				success: '#41EAD4',
-				warning: '#FBBC05',
+				warning: '#ff6f00',
 				danger: '#E83423',
 				info: '#2196F3',
 			},
@@ -33,6 +33,15 @@ module.exports = {
 				dm: ['var(--font-dm)'],
 				eb: ['var(--font-eb)'],
 				sigma: ['var(--font-sigma)'],
+			},
+			animation: {
+				noise: 'noise 1s linear infinite',
+			},
+			keyframes: {
+				noise: {
+					'0%, 100%': { backgroundPosition: '0% 0%' },
+					'50%': { backgroundPosition: '400% 400%' },
+				},
 			},
 		},
 	},
