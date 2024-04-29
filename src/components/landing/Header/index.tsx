@@ -1,15 +1,15 @@
-'use client'
+import dynamic from 'next/dynamic';
+const ThemeSwitcher = dynamic(() => import('./ThemeSwitcher'), {
+	ssr: false,
+	loading: () => <Loader />,
+});
 
-import { useTheme } from 'next-themes';
+const Loader = () => {
+	return 'Loading...';
+};
+
 const Header = () => {
-	const { theme, setTheme } = useTheme();
-	return (
-		<div className='space-x-4'>
-			<button onClick={() => setTheme('light')}>Light</button>
-			<button onClick={() => setTheme('dark')}>Dark</button>
-			<button onClick={() => setTheme('system')}>system</button>
-		</div>
-	);
+	return <ThemeSwitcher />;
 };
 
 export default Header;
