@@ -58,12 +58,12 @@ const Hero = () => {
 				</p>
 				<Button className="mt-3" />
 			</div>
-			<div className="absolute inset-0 -z-1 pointer-events-none select-none opacity-5 dark:opacity-10 mix-blend-multiply">
-				<div className="absolute inset-0 flex items-center justify-center dark:opacity-90">
-					<WorldMap className="w-10/12 h-auto fill-secondary" />
+			<div className="absolute inset-0 -z-1 pointer-events-none select-none opacity-20 dark:opacity-25 mix-blend-multiply">
+				<div className="absolute inset-0 flex items-center justify-center opacity-30">
+					<WorldMap className="w-9/12 h-auto fill-secondary" />
 				</div>
-				<div className="absolute inset-0 flex items-center justify-center dark:opacity-90">
-					<Hexagon className="w-11/12 h-auto fill-secondary stroke-dark" />
+				<div className="absolute inset-0 flex items-center justify-center">
+					<Hexagon className="w-11/12 h-auto fill-slate-300 dark:fill-slate-700 stroke-slate-500 dark:stroke-slate-400 opacity-75 dark:opacity-50" />
 				</div>
 			</div>
 		</section>
