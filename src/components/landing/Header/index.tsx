@@ -9,7 +9,13 @@ const Loader = () => {
 };
 
 const Header = () => {
-	return <ThemeSwitcher />;
+	return (
+		<header>
+		<div className='container'>
+			<ThemeSwitcher />
+		</div>
+		</header>
+	);
 };
 
 export default Header;
