@@ -1,46 +1,70 @@
+import Button from '@/components/common/Button';
+import Hexagon from '@/components/icons/Hexagon';
 import StartiseIcon from '@/components/icons/Startise';
+import WorldMap from '@/components/icons/WorldMap';
 import Image from 'next/image';
+
+const personalInfo = {
+	intro: `Hay There, I'm`,
+	title: `Sapan Mozammel.`,
+	conclusion: {
+		intro: `I am a Professional`,
+		expertise: `Frontend Developer`,
+		extend: `from`,
+		company: `startise.com.`,
+	},
+	description: `I'm an open-minded, determined learner, specializing in JavaScript, React, Node, and Three.js. With a focus on crafting pixel-perfect, performant,  accessible, and responsive applications, I'm essentially a FrontEnd developer addict, always focused on perfecting digital experiences.`,
+};
 
 const Hero = () => {
 	return (
-		<section className="min-h-screen flex flex-col py-20">
+		<section className="min-h-screen flex flex-col py-20 relative z-1">
 			<div className="container flex flex-col items-start justify-center gap-6 w-full grow">
 				<div className="text-5xl font-eb leading-snug w-full">
 					<p className="mb-[0.375em] text-secondary dark:text-light">
-						Hay There, I&apos;m
+						{personalInfo.intro}
 					</p>
 					<h1 className="flex items-center justify-start text-[2em] leading-none">
 						<span className="relative w-[7em] aspect-[1916/532]">
 							<Image
 								src="/hero/title.png"
 								fill
-								alt="Sapan Mozammel."
+								priority
+								sizes="(max-width: 768px) 100vw, 33vw"
+								alt={personalInfo.title}
 							/>
 						</span>
-						<span className="sr-only">Sapan Mozammel.</span>
+						<span className="sr-only">{personalInfo.title}</span>
 					</h1>
 					<h2 className="text-[0.85em] mt-[0.375em] leading-tight">
 						<span className="flex items-center justify-start gap-[0.5em] text-[0.8em] text-secondary dark:text-light">
-							I am a Professional
+							{personalInfo.conclusion.intro}
 						</span>
 						<span className="uppercase font-bold text-[1em] leading-snug tracking-wide">
-							Frontend Developer
+							{personalInfo.conclusion.expertise}
 						</span>
 						<span className="flex items-center justify-start gap-[0.5em] text-[0.8em] text-secondary dark:text-light">
-							from{' '}
+							{`${personalInfo.conclusion.extend} `}
 							<StartiseIcon className="!h-[0.9em] text-dark dark:text-white !w-auto" />
-							<span className="sr-only">startise.com.</span>
+							<span className="sr-only">
+								{personalInfo.conclusion.company}
+							</span>
 						</span>
 					</h2>
 				</div>
-				<div className="w-48 h-1 rounded-full bg-primary"></div>
+				<div className="w-48 h-1 rounded-full bg-primary" />
 				<p className="w-7/12 text-secondary dark:text-light text-base leading-relaxed tracking-wider">
-					It is a long established fact that a reader will be
-					distracted by the readable content of a page when looking at
-					its layout. The point of using Lorem Ipsum is that it has a
-					more-or-less normal distribution of letters.
+					{personalInfo.description}
 				</p>
-				<button className="bg-primary min-h-12 px-8 py-1 inline-flex items-center justify-center rounded-full text-white font-eb">Let&apos;s Talk</button>
+				<Button className="mt-3" />
+			</div>
+			<div className="absolute inset-0 -z-1 pointer-events-none select-none opacity-5 dark:opacity-10 mix-blend-multiply">
+				<div className="absolute inset-0 flex items-center justify-center dark:opacity-90">
+					<WorldMap className="w-10/12 h-auto fill-secondary" />
+				</div>
+				<div className="absolute inset-0 flex items-center justify-center dark:opacity-90">
+					<Hexagon className="w-11/12 h-auto fill-secondary stroke-dark" />
+				</div>
 			</div>
 		</section>
 	);

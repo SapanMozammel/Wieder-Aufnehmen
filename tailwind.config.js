@@ -45,6 +45,16 @@ module.exports = {
 					'50%': { backgroundPosition: '400% 400%' },
 				},
 			},
+			dropShadow: {
+				button: ['0  0.125rem 0.125rem rgba(0, 0, 0, 0.3)'],
+			},
+			zIndex: {
+				1: '1',
+				2: '2',
+				3: '3',
+				4: '4',
+				5: '5',
+			},
 		},
 	},
 	// ...
