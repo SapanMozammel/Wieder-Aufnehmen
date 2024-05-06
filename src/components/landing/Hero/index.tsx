@@ -56,14 +56,14 @@ const Hero = () => {
 				<p className="w-7/12 text-secondary dark:text-light text-base leading-relaxed tracking-wider">
 					{personalInfo.description}
 				</p>
-				<Button className="mt-3" />
+				<Button className="mt-5" />
 			</div>
 			<div className="absolute inset-0 -z-1 pointer-events-none select-none opacity-20 dark:opacity-25 mix-blend-multiply">
-				<div className="absolute inset-0 flex items-center justify-center opacity-30">
-					<WorldMap className="w-9/12 h-auto fill-secondary" />
+				<div className="absolute inset-0 flex items-center justify-center opacity-">
+					<WorldMap className="w-9/12 h-auto fill-slate-300 dark:fill-slate-800 opacity-75" />
 				</div>
 				<div className="absolute inset-0 flex items-center justify-center">
-					<Hexagon className="w-11/12 h-auto fill-slate-300 dark:fill-slate-700 stroke-slate-500 dark:stroke-slate-400 opacity-75 dark:opacity-50" />
+					<Hexagon className="w-11/12 h-auto fill-slate-300 dark:fill-slate-800 stroke-slate-500 dark:stroke-slate-500 opacity-75" />
 				</div>
 			</div>
 		</section>
