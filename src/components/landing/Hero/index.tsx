@@ -20,12 +20,12 @@ const Hero = () => {
 	return (
 		<section className="min-h-screen flex flex-col py-20 relative z-1">
 			<div className="container flex flex-col items-start justify-center gap-6 w-full grow">
-				<div className="text-5xl font-eb leading-snug w-full">
-					<p className="mb-[0.375em] text-secondary dark:text-light">
+				<div className="text-6xl font-eb leading-snug w-full">
+					<p className="mb-[0.25em] text-secondary-500 dark:text-secondary-300">
 						{personalInfo.intro}
 					</p>
 					<h1 className="flex items-center justify-start text-[2em] leading-none">
-						<span className="relative w-[7em] aspect-[1916/532]">
+						<span className="relative w-[5.125em] aspect-[1916/532]">
 							<Image
 								src="/hero/title.png"
 								fill
@@ -36,14 +36,14 @@ const Hero = () => {
 						</span>
 						<span className="sr-only">{personalInfo.title}</span>
 					</h1>
-					<h2 className="text-[0.85em] mt-[0.375em] leading-tight">
-						<span className="flex items-center justify-start gap-[0.5em] text-[0.8em] text-secondary dark:text-light">
+					<h2 className="text-[0.75em] mt-[0.25em] leading-tight">
+						<span className="flex items-center justify-start text-secondary-500 dark:text-secondary-300">
 							{personalInfo.conclusion.intro}
 						</span>
-						<span className="uppercase font-bold text-[1em] leading-snug tracking-wide">
+						<span className="text-[1.25em] font-semibold leading-tighter tracking-wider text-dark dark:text-white">
 							{personalInfo.conclusion.expertise}
 						</span>
-						<span className="flex items-center justify-start gap-[0.5em] text-[0.8em] text-secondary dark:text-light">
+						<span className="flex items-center justify-start gap-[0.375em] text-secondary-500 dark:text-secondary-300">
 							{`${personalInfo.conclusion.extend} `}
 							<StartiseIcon className="!h-[0.9em] text-dark dark:text-white !w-auto" />
 							<span className="sr-only">
@@ -53,17 +53,17 @@ const Hero = () => {
 					</h2>
 				</div>
 				<div className="w-48 h-1 rounded-full bg-primary" />
-				<p className="w-7/12 text-secondary dark:text-light text-base leading-relaxed tracking-wider">
+				<p className="w-7/12 text-secondary-500 dark:text-secondary-200 text-base leading-relaxed tracking-wider">
 					{personalInfo.description}
 				</p>
 				<Button className="mt-5" />
 			</div>
-			<div className="absolute inset-0 -z-1 pointer-events-none select-none opacity-20 dark:opacity-25 mix-blend-multiply">
-				<div className="absolute inset-0 flex items-center justify-center opacity-">
-					<WorldMap className="w-9/12 h-auto fill-slate-300 dark:fill-slate-800 opacity-75" />
+			<div className="absolute inset-0 -z-1 pointer-events-none select-none">
+				<div className="absolute inset-0 flex items-center justify-center">
+					<WorldMap className="w-full h-auto fill-secondary-100 dark:fill-slate-500/25" />
 				</div>
 				<div className="absolute inset-0 flex items-center justify-center">
-					<Hexagon className="w-11/12 h-auto fill-slate-300 dark:fill-slate-800 stroke-slate-500 dark:stroke-slate-500 opacity-75" />
+					<Hexagon className="w-full h-auto opacity-25 dark:opacity-20" />
 				</div>
 			</div>
 		</section>
