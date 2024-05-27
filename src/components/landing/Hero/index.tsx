@@ -2,6 +2,7 @@ import Button from '@/components/common/Button';
 import Hexagon from '@/components/icons/Hexagon';
 import StartiseIcon from '@/components/icons/Startise';
 import WorldMap from '@/components/icons/WorldMap';
+import Globe from '@/components/landing/Hero/earth/Globe';
 import Image from 'next/image';
 
 const personalInfo = {
@@ -18,7 +19,7 @@ const personalInfo = {
 
 const Hero = () => {
 	return (
-		<section className="min-h-screen flex flex-col py-20 relative z-1">
+		<section className="min-h-screen flex flex-col py-20 relative z-1 overflow-hidden">
 			<div className="container flex flex-col items-start justify-center gap-6 w-full grow">
 				<div className="text-6xl font-eb leading-snug w-full">
 					<p className="mb-[0.25em] text-secondary-500 dark:text-secondary-300">
@@ -66,6 +67,7 @@ const Hero = () => {
 					<Hexagon className="w-full h-auto opacity-25 dark:opacity-20" />
 				</div>
 			</div>
+			<Globe />
 		</section>
 	);
 };
