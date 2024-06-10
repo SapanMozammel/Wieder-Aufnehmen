@@ -10,10 +10,10 @@ const Loader = () => {
 
 const Header = () => {
 	return (
-		<header>
-		<div className='container'>
-			<ThemeSwitcher />
-		</div>
+		<header className="py-5 border-b border-secondary-800">
+			<div className="container">
+				<ThemeSwitcher />
+			</div>
 		</header>
 	);
 };

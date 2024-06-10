@@ -1,8 +1,6 @@
 import Button from '@/components/common/Button';
-import Hexagon from '@/components/icons/Hexagon';
 import StartiseIcon from '@/components/icons/Startise';
 import WorldMap from '@/components/icons/WorldMap';
-import Globe from '@/components/landing/Hero/earth/Globe';
 import Image from 'next/image';
 
 const personalInfo = {
@@ -63,11 +61,7 @@ const Hero = () => {
 				<div className="absolute inset-0 flex items-center justify-center">
 					<WorldMap className="w-full h-auto fill-secondary-100 dark:fill-slate-500/25" />
 				</div>
-				<div className="absolute inset-0 flex items-center justify-center">
-					<Hexagon className="w-full h-auto opacity-25 dark:opacity-20" />
-				</div>
 			</div>
-			<Globe />
 		</section>
 	);
 };

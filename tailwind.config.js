@@ -21,9 +21,9 @@ module.exports = {
 			},
 			colors: {
 				white: '#FFFFFF',
-				black: '#0E0E2C',
+				black: '#0e0c15',
 				light: '#ECF1F4',
-				dark: '#212A3E',
+				dark: '#0E0E2C',
 				secondary: {
 					100: '#E3ECF5',
 					200: '#D9E5F1',
@@ -31,7 +31,7 @@ module.exports = {
 					400: '#94a3b8',
 					500: '#5C637E',
 					800: '#334155',
-					800: '#1e293b',
+					800: '#212A3E',
 					900: '#0f172a',
 				},
 				primary: '#4B4DED',
