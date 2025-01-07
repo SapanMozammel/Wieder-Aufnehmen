@@ -73,7 +73,7 @@ module.exports = {
 	plugins: [
 		function ({ addComponents }) {
 			addComponents({
-				'.container': {
+				'.container-fluid': {
 					marginLeft: 'auto',
 					marginRight: 'auto',
 					maxWidth: '100%',
