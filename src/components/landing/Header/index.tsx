@@ -10,9 +10,10 @@ const Loader = () => {
 
 const Header = () => {
 	return (
-		<header className="py-5 border-b border-secondary-800">
-			<div className="container">
+		<header className="relative py-5 z-2">
+			<div className="container-fluid">
 				<ThemeSwitcher />
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore laudantium saepe, non exercitationem ipsum iusto itaque ea consequuntur officiis, tempora, deleniti delectus doloribus ratione! Deleniti eligendi illo saepe temporibus molestiae.
 			</div>
 		</header>
 	);
