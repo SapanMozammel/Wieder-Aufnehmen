@@ -17,7 +17,7 @@ const Hero = () => {
 	return (
 		<section className="min-h-screen flex flex-col relative z-1">
 			<SectionSeparator lts rts lbs rbs tl bl ll rl>
-				<div className="container-fluid grow py-20 flex flex-col items-start justify-center gap-6 w-full">
+				<div className="container grow py-20 flex flex-col items-start justify-center gap-6 w-full">
 					Lorem ipsum dolor sit amet consectetur adipisicing elit.
 					Autem quisquam, rerum accusantium optio error nemo, impedit
 					cumque exercitationem dolor cupiditate libero aperiam

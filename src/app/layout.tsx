@@ -86,6 +86,7 @@ export default function RootLayout({
 	return (
 		<html
 			lang="en"
+			dir='rtl'
 			suppressHydrationWarning>
 			<body
 				suppressHydrationWarning

@@ -1,5 +1,5 @@
 import { SeparatorTypes } from '@/app/types/accessoriesTypes';
-import { Sparkle } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import React from 'react';
 
 const SectionSeparator = (
@@ -23,9 +23,9 @@ const SectionSeparator = (
 		...rest
 	} = props;
 
-	const starClasses = 'w-4 text-warning-light/80 z-1';
+	const starClasses = 'w-3 md:w-4 text-primary-600/90 dark:text-warning-light/80 z-1';
 	const lineClasses =
-		'border-solid border-secondary-200 dark:border-secondary-800';
+		'border-solid border-secondary-300 dark:border-secondary-800';
 
 	return (
 		<React.Fragment>
@@ -33,32 +33,32 @@ const SectionSeparator = (
 				className={`${className} section-separator pointer-events-none select-none`}
 				{...rest}>
 				{lts ? (
-					<Sparkle
-						strokeWidth={3}
+					<Plus
+						strokeWidth={6}
 						className={`${starClasses} absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2`}
 					/>
 				) : (
 					<></>
 				)}
 				{rts ? (
-					<Sparkle
-						strokeWidth={3}
+					<Plus
+						strokeWidth={6}
 						className={`${starClasses} absolute right-0 top-0 translate-x-1/2 -translate-y-1/2`}
 					/>
 				) : (
 					<></>
 				)}
 				{lbs ? (
-					<Sparkle
-						strokeWidth={3}
+					<Plus
+						strokeWidth={6}
 						className={`${starClasses} absolute left-0 bottom-0 -translate-x-1/2 translate-y-1/2`}
 					/>
 				) : (
 					<></>
 				)}
 				{rbs ? (
-					<Sparkle
-						strokeWidth={3}
+					<Plus
+						strokeWidth={6}
 						className={`${starClasses} absolute right-0 bottom-0 translate-x-1/2 translate-y-1/2`}
 					/>
 				) : (
