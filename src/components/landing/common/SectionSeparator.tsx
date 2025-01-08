@@ -23,9 +23,9 @@ const SectionSeparator = (
 		...rest
 	} = props;
 
-	const starClasses = 'w-3 md:w-4 text-primary-600/90 dark:text-warning-light/80 z-1';
+	const starClasses = 'w-3 md:w-4 text-primary-600 dark:text-warning-light z-1';
 	const lineClasses =
-		'border-solid border-secondary-300 dark:border-secondary-800';
+		'border-solid border-secondary-400 dark:border-secondary-600';
 
 	return (
 		<React.Fragment>
