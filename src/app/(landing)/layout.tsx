@@ -15,7 +15,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 				<main>{children}</main>
 				<Footer />
 			</ThemeProvider>
-			{/* <div className="absolute inset-0 bg-[url('/noise.png')] bg-repeat opacity-10 dark:opacity-20 animate-noise pointer-events-none select-none z-1"></div> */}
+			<div className="absolute inset-0 bg-[url('/noise.png')] bg-repeat opacity-10 dark:opacity-30 animate-noise pointer-events-none select-none z-1"></div>
 		</div>
 	);
 };

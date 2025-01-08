@@ -48,7 +48,7 @@ module.exports = {
 					light: '#FFD057',
 				},
 				danger: '#E83423',
-				info: '#2196F3',
+				info: { DEFAULT: '#2196F3', 500: '#1f8fff' },
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {
@@ -81,6 +81,9 @@ module.exports = {
 					4: 'hsl(var(--chart-4))',
 					5: 'hsl(var(--chart-5))',
 				},
+			},
+			spacing: {
+				256: '64rem',
 			},
 			fontFamily: {
 				dm: ['var(--font-dm)'],
