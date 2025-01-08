@@ -4,7 +4,7 @@ import { ThemeProvider } from 'next-themes';
 
 const layout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<>
+		<div className="bg-white dark:bg-black text-dark dark:text-white relative">
 			<ThemeProvider
 				enableSystem={true}
 				defaultTheme="system"
@@ -12,13 +12,11 @@ const layout = ({ children }: { children: React.ReactNode }) => {
 				themes={['light', 'dark', 'system']}
 				attribute="class">
 				<Header />
-				<main className="relative">
-					{children}
-					<div className="absolute inset-0 bg-[url('/noise.png')] bg-repeat opacity-10 animate-noise pointer-events-none select-none"></div>
-				</main>
+				<main>{children}</main>
 				<Footer />
 			</ThemeProvider>
-		</>
+			{/* <div className="absolute inset-0 bg-[url('/noise.png')] bg-repeat opacity-10 dark:opacity-20 animate-noise pointer-events-none select-none z-1"></div> */}
+		</div>
 	);
 };
 
