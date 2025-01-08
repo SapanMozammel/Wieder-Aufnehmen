@@ -23,7 +23,8 @@ const SectionSeparator = (
 		...rest
 	} = props;
 
-	const starClasses = 'w-3 md:w-4 text-primary-600 dark:text-warning-light z-1';
+	const starClasses =
+		'w-3 md:w-4 text-primary-600 dark:text-warning-light z-1';
 	const lineClasses =
 		'border-solid border-secondary-400 dark:border-secondary-600';
 

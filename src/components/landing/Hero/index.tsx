@@ -1,5 +1,6 @@
-import WorldMap from '@/components/icons/WorldMap';
+import Button from '@/components/common/Button';
 import SectionSeparator from '@/components/landing/common/SectionSeparator';
+import HeroBackground from './HeroBackground';
 
 const personalInfo = {
 	intro: `Hay There, I'm`,
@@ -16,20 +17,13 @@ const personalInfo = {
 const Hero = () => {
 	return (
 		<section className="min-h-screen flex flex-col relative z-1">
-			<SectionSeparator lts rts lbs rbs tl bl ll rl>
-				<div className="container grow py-20 flex flex-col items-start justify-center gap-6 w-full">
-					Lorem ipsum dolor sit amet consectetur adipisicing elit.
-					Autem quisquam, rerum accusantium optio error nemo, impedit
-					cumque exercitationem dolor cupiditate libero aperiam
-					dolorem aut vel illo praesentium tempore adipisci
-					consectetur.
-				</div>
-			</SectionSeparator>
-			<div className="absolute inset-0 -z-2 pointer-events-none select-none">
-				<div className="absolute inset-0 flex items-center justify-center">
-					<WorldMap className="w-full h-auto fill-secondary-100 dark:fill-gray-500/25" />
-				</div>
-			</div>
+			<HeroBackground>
+				<SectionSeparator lts rts lbs rbs tl bl ll rl>
+					<div className="container grow py-20 flex flex-col items-start justify-center gap-6 w-full">
+						<Button></Button>
+					</div>
+				</SectionSeparator>
+			</HeroBackground>
 		</section>
 	);
 };
