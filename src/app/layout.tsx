@@ -1,5 +1,5 @@
 import '../scss/style.scss';
-import { dmSans, ebGaramond, sigmaOne } from './fonts';
+import { dmSans, ebGaramond, hankenGrotesk } from './fonts';
 
 export const metadata = {
 	metadataBase: new URL('http://localhost:3000'),
@@ -84,12 +84,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<html
-			lang="en"
-			suppressHydrationWarning>
+		<html lang="en" suppressHydrationWarning>
 			<body
 				suppressHydrationWarning
-				className={`${dmSans.variable} ${ebGaramond.variable} ${sigmaOne.variable} font-dm`}>
+				className={`${dmSans.variable} ${ebGaramond.variable} ${hankenGrotesk.variable} font-dm`}>
 				{children}
 			</body>
 		</html>

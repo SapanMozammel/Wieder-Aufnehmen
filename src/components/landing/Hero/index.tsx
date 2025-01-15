@@ -16,14 +16,16 @@ const personalInfo = {
 
 const Hero = () => {
 	return (
-		<section className="min-h-screen flex flex-col relative z-1">
-			<HeroBackground>
-				<SectionSeparator lts rts lbs rbs tl bl ll rl>
-					<div className="container grow py-20 flex flex-col items-start justify-center gap-6 w-full">
-						<Button></Button>
-					</div>
-				</SectionSeparator>
-			</HeroBackground>
+		<section className="min-h-screen flex flex-col pt-20">
+			<div className="grow flex flex-col relative z-1">
+				<HeroBackground>
+					<SectionSeparator lts rts lbs rbs bl ll rl>
+						<div className="container grow py-20 flex flex-col items-start justify-center gap-6 w-full">
+							<Button></Button>
+						</div>
+					</SectionSeparator>
+				</HeroBackground>
+			</div>
 		</section>
 	);
 };
