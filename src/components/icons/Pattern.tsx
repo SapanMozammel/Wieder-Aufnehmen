@@ -11,8 +11,8 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 				stroke="currentColor"
 				strokeMiterlimit="10"
 				d="M1407.003 741.293 1266.71 601l140.293-140.293L1547.296 601Z"
-				opacity="0.3"></path>
-			<g opacity="0.1">
+				opacity="0.5"></path>
+			<g opacity="0.2">
 				<defs>
 					<linearGradient
 						id="idss526653676_2g-208772616"
@@ -31,7 +31,7 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 					fill="url(#idss526653676_2g-208772616)"
 					d="m1836.738 1.081-.748-.664L782.365 936.065l.748.664Z"></path>
 			</g>
-			<g opacity="0.1">
+			<g opacity="0.2">
 				<defs>
 					<linearGradient
 						id="idss526653676_3g-208772705"
@@ -50,7 +50,7 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 					fill="url(#idss526653676_3g-208772705)"
 					d="m.348 1.081.748-.664 1053.625 935.648-.748.664Z"></path>
 			</g>
-			<g opacity="0.1">
+			<g opacity="0.2">
 				<defs>
 					<linearGradient
 						id="idss526653676_4g-208772689"
@@ -69,7 +69,7 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 					fill="url(#idss526653676_4g-208772689)"
 					d="M1407 127.145h-1v1292h1Z"></path>
 			</g>
-			<g opacity="0.1">
+			<g opacity="0.2">
 				<defs>
 					<linearGradient
 						id="idss526653676_5g-208772696"
@@ -93,8 +93,8 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 				stroke="currentColor"
 				strokeMiterlimit="10"
 				d="M1749 458.75h-108.75l-26.5-26.5H1456.5l-49.5-49.5M88.087 458.75h108.75l26.5-26.5h157.25l49.5-49.5"
-				opacity="0.1"></path>
-			<g opacity="0.2">
+				opacity="0.2"></path>
+			<g opacity="0.3">
 				<defs>
 					<linearGradient
 						id="idss526653676_8g-208772616"
@@ -113,7 +113,7 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 					fill="url(#idss526653676_8g-208772616)"
 					d="M1549.718.664 1548.97 0 495.345 935.648l.748.664Z"></path>
 			</g>
-			<g opacity="0.2">
+			<g opacity="0.3">
 				<defs>
 					<linearGradient
 						id="idss526653676_9g-208772705"
@@ -132,7 +132,7 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 					fill="url(#idss526653676_9g-208772705)"
 					d="m287.366.664.748-.664 1053.625 935.648-.748.664Z"></path>
 			</g>
-			<g opacity="0.1">
+			<g opacity="0.2">
 				<defs>
 					<linearGradient
 						id="idss526653676_10g810573306"
@@ -143,7 +143,7 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 						<stop
 							offset="0"
 							stopColor="currentColor"
-							stopOpacity="0.1"></stop>
+							stopOpacity="0.2"></stop>
 						<stop
 							offset="0.5"
 							stopColor="currentColor"
@@ -151,14 +151,14 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 						<stop
 							offset="1"
 							stopColor="currentColor"
-							stopOpacity="0.1"></stop>
+							stopOpacity="0.2"></stop>
 					</linearGradient>
 				</defs>
 				<path
 					fill="url(#idss526653676_10g810573306)"
 					d="M1998 601v-1H0v1Z"></path>
 			</g>
-			<g opacity="0.1">
+			<g opacity="0.2">
 				<defs>
 					<linearGradient
 						id="idss526653676_11g810572973"
@@ -169,7 +169,7 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 						<stop
 							offset="0"
 							stopColor="currentColor"
-							stopOpacity="0.1"></stop>
+							stopOpacity="0.2"></stop>
 						<stop
 							offset="0.5"
 							stopColor="currentColor"
@@ -177,7 +177,7 @@ const Pattern = (props: React.SVGProps<SVGSVGElement>) => {
 						<stop
 							offset="1"
 							stopColor="currentColor"
-							stopOpacity="0.1"></stop>
+							stopOpacity="0.2"></stop>
 					</linearGradient>
 				</defs>
 				<path

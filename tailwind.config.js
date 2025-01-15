@@ -14,10 +14,10 @@ module.exports = {
 				'gradient-conic':
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			},
-			borderWidth: {
-				1: '0.0625rem',
-				2: '0.125rem',
-				3: '0.1875rem',
+			fontFamily: {
+				dm: ['var(--font-dm)'],
+				eb: ['var(--font-eb)'],
+				hg: ['var(--font-hg)'],
 			},
 			colors: {
 				white: '#FFFFFF',
@@ -47,7 +47,7 @@ module.exports = {
 					DEFAULT: '#ff6f00',
 					light: '#FFD057',
 				},
-				danger: '#E83423',
+				danger: { 400: '#f56565', 500: '#E83423' },
 				info: { DEFAULT: '#2196F3', 500: '#1f8fff' },
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
@@ -85,10 +85,15 @@ module.exports = {
 			spacing: {
 				256: '64rem',
 			},
-			fontFamily: {
-				dm: ['var(--font-dm)'],
-				eb: ['var(--font-eb)'],
-				sigma: ['var(--font-sigma)'],
+			borderWidth: {
+				1: '0.0625rem',
+				2: '0.125rem',
+				3: '0.1875rem',
+			},
+			borderRadius: {
+				lg: 'var(--radius)',
+				md: 'calc(var(--radius) - 0.125rem)',
+				sm: 'calc(var(--radius) - 0.25rem)',
 			},
 			animation: {
 				noise: 'noise 1s linear infinite',
@@ -113,11 +118,6 @@ module.exports = {
 				4: '4',
 				5: '5',
 			},
-			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 0.125rem)',
-				sm: 'calc(var(--radius) - 0.25rem)',
-			},
 		},
 	},
 	// ...
@@ -127,18 +127,6 @@ module.exports = {
 	plugins: [
 		function ({ addComponents }) {
 			addComponents({
-				'.container-fluid': {
-					marginLeft: 'auto',
-					marginRight: 'auto',
-					maxWidth: '100%',
-					paddingInlineStart: '1.5rem',
-					paddingInlineEnd: '1.5rem',
-					'@screen sm': {
-						maxWidth: '80%',
-						paddingInlineStart: '0',
-						paddingInlineEnd: '0',
-					},
-				},
 				'.container': {
 					marginLeft: 'auto',
 					marginRight: 'auto',
@@ -158,8 +146,8 @@ module.exports = {
 					paddingInlineStart: '1.5rem',
 					paddingInlineEnd: '1.5rem',
 					'@screen md': {
-						paddingInlineStart: '2.25rem',
-						paddingInlineEnd: '2.25rem',
+						paddingInlineStart: '2.5rem',
+						paddingInlineEnd: '2.5rem',
 					},
 				},
 				'.section-separator': {
@@ -170,8 +158,8 @@ module.exports = {
 					right: '0.75rem',
 					zIndex: '-1',
 					'@screen md': {
-						left: '2.25rem',
-						right: '2.25rem',
+						left: '2.5rem',
+						right: '2.5rem',
 					},
 				},
 			});

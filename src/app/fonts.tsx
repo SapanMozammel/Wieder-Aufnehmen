@@ -1,4 +1,4 @@
-import { DM_Sans, EB_Garamond, Sigmar_One } from 'next/font/google';
+import { DM_Sans, EB_Garamond, Hanken_Grotesk } from 'next/font/google';
 
 export const dmSans = DM_Sans({
   display: 'swap',
@@ -16,10 +16,10 @@ export const ebGaramond = EB_Garamond({
   variable: '--font-eb',
 });
 
-export const sigmaOne = Sigmar_One({
+export const hankenGrotesk = Hanken_Grotesk({
   display: 'swap',
-  weight: ['400'],
+  weight: ['200','300','400','500','600','700','800','900'],
   subsets: ['latin'],
-  style: ['normal'],
-  variable: '--font-sigma',
+  style: ['normal', 'italic'],
+  variable: '--font-hg',
 });
