@@ -68,11 +68,11 @@ const ThemeSwitcher = () => {
 
 	const themeIcon = (value: string | undefined) => {
 		if (theme === 'light') return <SunIcon className="w-5" />;
-		if (theme === 'dark') return <MoonStarIcon className="w-4" />;
+		if (theme === 'dark') return <MoonStarIcon className="w-5" />;
 		return systemTheme === 'light' ? (
 			<SunIcon className="w-5" />
 		) : (
-			<MoonStarIcon className="w-4" />
+			<MoonStarIcon className="w-5" />
 		);
 	};
 
@@ -82,9 +82,9 @@ const ThemeSwitcher = () => {
 				<Tooltip>
 					<TooltipTrigger>
 						<DropdownMenuTrigger
-							className="outline-none h-8 aspect-square inline-flex items-center justify-center cursor-pointer"
+							className="outline-none h-8 aspect-square inline-flex items-center justify-center cursor-pointer text-secondary-500 hover:text-warning dark:text-secondary-300 dark:hover:text-success ease-in-out"
 							asChild>
-							<button>{themeIcon(theme)}</button>
+							<span>{themeIcon(theme)}</span>
 						</DropdownMenuTrigger>
 					</TooltipTrigger>
 					<TooltipContent

@@ -1,4 +1,5 @@
 import Logo from '@/components/icons/Logo';
+import { GithubIcon, LoaderCircleIcon } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 const ThemeSwitcher = dynamic(() => import('./ThemeSwitcher'), {
@@ -7,7 +8,11 @@ const ThemeSwitcher = dynamic(() => import('./ThemeSwitcher'), {
 });
 
 const Loader = () => {
-	return 'Loading...';
+	return (
+		<span className="h-8 aspect-square inline-flex items-center justify-center text-secondary-500 dark:text-secondary-300">
+			<LoaderCircleIcon className="w-5 animate-spin" />
+		</span>
+	);
 };
 
 const Header = () => {
@@ -23,8 +28,14 @@ const Header = () => {
 							sapan.dev
 						</h2>
 					</Link>
-					<div className="ml-auto space-x-4">
+					<div className="ml-auto flex items-center gap-x-2 gap-y-1">
 						<ThemeSwitcher />
+						<Link
+							href="https://github.com/SapanMozammel"
+							target="_blank"
+							className="h-8 aspect-square inline-flex items-center justify-center cursor-pointer text-black hover:text-warning dark:text-white dark:hover:text-success ease-in-out">
+							<GithubIcon className="w-5" />
+						</Link>
 					</div>
 				</div>
 			</div>
