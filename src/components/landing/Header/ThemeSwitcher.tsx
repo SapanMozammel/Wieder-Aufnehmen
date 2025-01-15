@@ -17,12 +17,12 @@ import {
 	TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { isMacOS } from '@/lib/utils';
-import { MoonIcon, SunIcon, SunMoonIcon } from 'lucide-react';
+import { MonitorIcon, MoonStarIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useCallback, useEffect } from 'react';
 
 const ThemeSwitcher = () => {
-	const { theme, setTheme } = useTheme();
+	const { theme, setTheme, systemTheme } = useTheme();
 
 	const changeTheme = useCallback(
 		(value?: string) => {
@@ -38,6 +38,8 @@ const ThemeSwitcher = () => {
 		},
 		[theme, setTheme]
 	);
+
+	console.log(systemTheme);
 
 	const handleKeyDown = useCallback(
 		(event: KeyboardEvent) => {
@@ -65,15 +67,13 @@ const ThemeSwitcher = () => {
 	}, [theme, handleKeyDown]);
 
 	const themeIcon = (value: string | undefined) => {
-		switch (value) {
-			case 'light':
-				return <SunIcon />;
-			case 'dark':
-				return <MoonIcon />;
-			case 'system':
-			default:
-				return <SunMoonIcon />;
-		}
+		if (theme === 'light') return <SunIcon className="w-5" />;
+		if (theme === 'dark') return <MoonStarIcon className="w-4" />;
+		return systemTheme === 'light' ? (
+			<SunIcon className="w-5" />
+		) : (
+			<MoonStarIcon className="w-4" />
+		);
 	};
 
 	return (
@@ -87,8 +87,10 @@ const ThemeSwitcher = () => {
 							<button>{themeIcon(theme)}</button>
 						</DropdownMenuTrigger>
 					</TooltipTrigger>
-					<TooltipContent align='end' className="border-secondary-400 dark:border-secondary-600">
-						<p className="capitalize">{theme} Mode</p>
+					<TooltipContent
+						align="end"
+						className="border-secondary-400 dark:border-secondary-600">
+						<p className="capitalize">{theme} Theme</p>
 					</TooltipContent>
 				</Tooltip>
 			</TooltipProvider>
@@ -104,26 +106,26 @@ const ThemeSwitcher = () => {
 					<DropdownMenuItem
 						className="cursor-pointer"
 						onClick={() => {
-							changeTheme('system');
-						}}>
-						<SunMoonIcon className="!w-3.5" />
-						<span>System Mode</span>
-					</DropdownMenuItem>
-					<DropdownMenuItem
-						className="cursor-pointer"
-						onClick={() => {
 							changeTheme('light');
 						}}>
-						<SunIcon className="!w-3.5" />
-						<span>Light Mode</span>
+						<SunIcon />
+						<span>Light Theme</span>
 					</DropdownMenuItem>
 					<DropdownMenuItem
 						className="cursor-pointer"
 						onClick={() => {
 							changeTheme('dark');
 						}}>
-						<MoonIcon className="!w-3.5" />
-						<span>Dark Mode</span>
+						<MoonStarIcon />
+						<span>Dark Theme</span>
+					</DropdownMenuItem>
+					<DropdownMenuItem
+						className="cursor-pointer"
+						onClick={() => {
+							changeTheme('system');
+						}}>
+						<MonitorIcon />
+						<span>System Theme</span>
 					</DropdownMenuItem>
 				</DropdownMenuGroup>
 			</DropdownMenuContent>
