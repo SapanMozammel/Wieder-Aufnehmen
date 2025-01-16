@@ -28,7 +28,7 @@ const Header = () => {
 							sapan.dev
 						</h2>
 					</Link>
-					<div className="ml-auto flex items-center gap-x-2 gap-y-1">
+					<div className="ms-auto flex items-center gap-x-2 gap-y-1">
 						<ThemeSwitcher />
 						<Link
 							href="https://github.com/SapanMozammel"

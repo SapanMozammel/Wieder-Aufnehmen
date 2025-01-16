@@ -39,8 +39,6 @@ const ThemeSwitcher = () => {
 		[theme, setTheme]
 	);
 
-	console.log(systemTheme);
-
 	const handleKeyDown = useCallback(
 		(event: KeyboardEvent) => {
 			const baseKey =
