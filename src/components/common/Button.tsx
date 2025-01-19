@@ -108,11 +108,11 @@ export const Button = (
 								/>
 							</linearGradient>
 							<polygon
-								className='fill-[url(#btn-top)] group-disabled/button:fill-secondary-400'
+								className="fill-[url(#btn-top)] group-disabled/button:fill-secondary-400"
 								fillRule="nonzero"
 								points="101 0 101 2 0 2 0 0"></polygon>
 							<polygon
-								className='fill-[url(#btn-bottom)] group-disabled/button:fill-secondary-400'
+								className="fill-[url(#btn-bottom)] group-disabled/button:fill-secondary-400"
 								fillRule="nonzero"
 								points="101 42 101 44 0 44 0 42"></polygon>
 						</svg>
