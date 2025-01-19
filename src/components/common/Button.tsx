@@ -19,7 +19,7 @@ export const Button = (
 
 	return (
 		<button
-			className={`relative inline-flex items-center justify-center h-12 !px-[calc(theme(height.12)*21/44)] group/button ${className}`}
+			className={`relative inline-flex items-center justify-center h-11 !px-[calc(theme(height.11)*21/44)] group/button ${className}`}
 			disabled={disabled}
 			{...rest}>
 			{fill ? (
@@ -33,7 +33,7 @@ export const Button = (
 							d="M22,43.00005 L8.11111,43.00005 C4.18375,43.00005 1,39.58105 1,35.36365 L1,8.63637 C1,4.41892 4.18375,1 8.11111,1 L21,1"></path>
 					</svg>
 					<span className="relative h-full">
-						<span className="relative z-10 h-full inline-flex items-center justify-center px-[0.5em] text-sm uppercase font-eb font-bold tracking-widest text-white dark:text-dark group-hover/button:text-white group-disabled/button:!text-secondary-500">
+						<span className="relative z-10 h-full inline-flex items-center justify-center px-[0.5em] text-sm uppercase font-eb font-bold tracking-wider text-white dark:text-dark group-hover/button:text-white group-disabled/button:!text-secondary-500">
 							{children}
 						</span>
 						<svg
@@ -75,7 +75,7 @@ export const Button = (
 							d="M22,43.00005 L8.11111,43.00005 C4.18375,43.00005 1,39.58105 1,35.36365 L1,8.63637 C1,4.41892 4.18375,1 8.11111,1 L21,1"></path>
 					</svg>
 					<span className="relative h-full">
-						<span className="relative z-10 h-full inline-flex items-center justify-center px-[0.5em] text-sm uppercase font-eb font-bold tracking-widest text-dark dark:text-white group-disabled/button:!text-secondary-500">
+						<span className="relative z-10 h-full inline-flex items-center justify-center px-[0.5em] text-sm uppercase font-eb font-bold tracking-wider text-dark dark:text-white group-disabled/button:!text-secondary-500">
 							{children}
 						</span>
 						<svg
