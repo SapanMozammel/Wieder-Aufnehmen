@@ -1,4 +1,4 @@
-import { Button } from '@/components/common/Button';
+import Button from '@/components/common/Button';
 import SectionSeparator from '@/components/landing/common/SectionSeparator';
 import TextUnderline from '../common/TextUnderline';
 import HeroBackground from './HeroBackground';

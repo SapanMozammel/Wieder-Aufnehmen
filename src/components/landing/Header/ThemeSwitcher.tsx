@@ -97,7 +97,7 @@ const ThemeSwitcher = () => {
 				align="end">
 				<DropdownMenuLabel className="flex items-center gap-1">
 					<span>Change Theme</span>
-					<DropdownMenuShortcut>⌘⎇T</DropdownMenuShortcut>
+					<DropdownMenuShortcut>⌘⌥T</DropdownMenuShortcut>
 				</DropdownMenuLabel>
 				<DropdownMenuSeparator />
 				<DropdownMenuGroup>

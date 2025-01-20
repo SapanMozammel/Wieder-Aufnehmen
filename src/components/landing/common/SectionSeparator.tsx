@@ -23,15 +23,16 @@ const SectionSeparator = (
 		...rest
 	} = props;
 
-	const starClasses =
-		'w-3 md:w-4 text-primary-600 dark:text-warning z-1';
+	const starClasses = 'w-3 md:w-4 text-primary-600 dark:text-warning z-1';
 	const lineClasses =
 		'border-solid border-secondary-400 dark:border-secondary-600';
 
 	return (
 		<React.Fragment>
 			<div
-				className={`${className} section-separator pointer-events-none select-none`}
+				className={`section-separator pointer-events-none select-none ${
+					className ?? ''
+				}`}
 				{...rest}>
 				{lts ? (
 					<Plus

@@ -1,7 +1,7 @@
 'use client';
 import { ButtonProps } from '@/app/types/fieldTypes';
 
-export const Button = (
+const Button = (
 	props: React.DetailedHTMLProps<
 		React.ButtonHTMLAttributes<HTMLButtonElement>,
 		HTMLButtonElement
@@ -19,7 +19,9 @@ export const Button = (
 
 	return (
 		<button
-			className={`relative inline-flex items-center justify-center h-11 !px-[calc(theme(height.11)*21/44)] group/button ${className}`}
+			className={`relative inline-flex items-center justify-center h-11 !px-[calc(theme(height.11)*21/44)] group/button ${
+				className ?? ''
+			}`}
 			disabled={disabled}
 			{...rest}>
 			{fill ? (
@@ -139,3 +141,5 @@ export const Button = (
 		</button>
 	);
 };
+
+export default Button;

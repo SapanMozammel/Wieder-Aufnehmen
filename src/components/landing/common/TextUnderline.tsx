@@ -8,7 +8,7 @@ const TextUnderline = (
 ) => {
 	const { children, className, ...rest } = props;
 	return (
-		<span className={`${className} relative`} {...rest}>
+		<span className={`relative ${className ?? ''}`} {...rest}>
 			{children}
 			<svg
 				className="absolute inset-x-0 -bottom-3 aspect-[372/32]"

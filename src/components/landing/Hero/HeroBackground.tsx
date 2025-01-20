@@ -13,7 +13,9 @@ const HeroBackground = (
 		<React.Fragment>
 			{children}
 			<div
-				className={`${className} absolute inset-0 -z-2 pointer-events-none select-none overflow-hidden`}
+				className={`absolute inset-0 -z-2 pointer-events-none select-none overflow-hidden ${
+					className ?? ''
+				}`}
 				{...rest}>
 				<div className="absolute inset-0 flex items-center justify-center">
 					<WorldMap className="h-full w-auto fill-secondary-100 dark:fill-gray-500/25" />
