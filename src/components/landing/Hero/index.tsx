@@ -1,4 +1,4 @@
-import Button from '@/components/common/Button';
+import { LinkButton } from '@/components/common/Button';
 import SectionSeparator from '@/components/landing/common/SectionSeparator';
 import TextUnderline from '../common/TextUnderline';
 import HeroBackground from './HeroBackground';
@@ -28,9 +28,13 @@ const Hero = () => {
 								pride in writing clean, maintainable code while
 								adhering to engineering best practices.
 							</p>
-							<Button className="mt-4" fill>
+							<LinkButton
+								href="/"
+								target="_blank"
+								className="mt-4"
+								fill>
 								Let&apos;s Talk
-							</Button>
+							</LinkButton>
 						</div>
 					</SectionSeparator>
 				</HeroBackground>
