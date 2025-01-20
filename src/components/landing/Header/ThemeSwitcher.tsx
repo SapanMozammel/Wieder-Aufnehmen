@@ -78,10 +78,8 @@ const ThemeSwitcher = () => {
 		<DropdownMenu>
 			<TooltipProvider>
 				<Tooltip>
-					<TooltipTrigger>
-						<DropdownMenuTrigger
-							className="outline-none h-8 aspect-square inline-flex items-center justify-center cursor-pointer text-secondary-500 hover:text-warning dark:text-secondary-300 dark:hover:text-success ease-in-out"
-							asChild>
+					<TooltipTrigger className="outline-none h-8 aspect-square inline-flex items-center justify-center cursor-pointer text-secondary-500 hover:text-warning dark:text-secondary-300 dark:hover:text-success ease-in-out">
+						<DropdownMenuTrigger asChild>
 							<span>{themeIcon(theme)}</span>
 						</DropdownMenuTrigger>
 					</TooltipTrigger>

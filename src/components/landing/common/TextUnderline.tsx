@@ -11,7 +11,7 @@ const TextUnderline = (
 		<span className={`relative ${className ?? ''}`} {...rest}>
 			{children}
 			<svg
-				className="absolute inset-x-0 -bottom-3 aspect-[372/32]"
+				className="absolute inset-x-0 -bottom-[0.25em] aspect-[372/32]"
 				viewBox="0 0 372 32">
 				<g clipPath="url(#clip0_1682_152)">
 					<path
