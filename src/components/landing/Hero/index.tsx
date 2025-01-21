@@ -32,11 +32,11 @@ const Hero = () => {
 							<LinkButton
 								href="/"
 								target="_blank"
-								className="mt-4"
+								className="mt-0 sm:mt-4"
 								fill>
 								Let&apos;s Talk
 							</LinkButton>
-							<div className="mt-8 sm:mt-10 lg:mt-14 w-3/4 -mb-[20vw]">
+							<div className="mt-4 sm:mt-10 lg:mt-14 w-3/4 -mb-[20vw]">
 								<AdminScreen />
 							</div>
 						</div>

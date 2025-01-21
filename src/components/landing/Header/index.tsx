@@ -22,7 +22,7 @@ const Header = () => {
 				<div className="grow flex items-center justify-between">
 					<Link
 						href="/"
-						className="flex items-center gap-1.5 sm:gap-2 cursor-pointer">
+						className="flex flex-row rtl:flex-row-reverse items-center gap-1.5 sm:gap-2 cursor-pointer">
 						<Logo className="h-8 sm:h-10" />
 						<h2 className="text-xl sm:text-2xl font-hg font-normal italic !leading-none pb-0.5 tracking-tighter scale-y-110 text-black dark:text-white">
 							sapan.dev

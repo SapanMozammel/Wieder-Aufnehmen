@@ -26,7 +26,7 @@ const TextUnderline = (
 						y1="16"
 						y2="16"
 						gradientUnits="userSpaceOnUse">
-						<stop stopColor="#1f8fff"></stop>
+						<stop stopColor="#2670e9"></stop>
 						<stop offset="1" stopColor="#41EAD4"></stop>
 					</linearGradient>
 					<clipPath id="clip0_1682_152">
