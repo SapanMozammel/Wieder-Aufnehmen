@@ -118,8 +118,8 @@ const inboxList = [
 
 const AdminScreen = () => {
 	return (
-		<div className="w-full aspect-[16/10] relative text-[0.75vw] text-left !font-light text-black dark:text-white">
-			<div className="h-full w-full flex bg-light/20 dark:bg-dark/20 backdrop-blur rounded-[0.6em] border-[0.025em] border-solid border-info/30 shadow-lg shadow-info/10">
+		<div className="w-full aspect-[16/10] relative text-[0.75vw] text-left !font-light text-black dark:text-white group/admin-dashboard">
+			<div className="h-full w-full flex bg-light/20 dark:bg-dark/20 backdrop-blur rounded-[0.6em] border-[0.025em] border-solid border-info/30 shadow-lg shadow-info/10 group-hover/admin-dashboard:scale-105 ease-in-out duration-1000 delay-500 pointer-events-none select-none">
 				<div className="h-full w-full flex rounded-[0.6em] overflow-hidden tracking-widest">
 					<div className="w-1/4 shrink-0 bg-white/50 dark:bg-black/50 flex flex-col gap-[1em] border-e-[0.025em] border-solid border-info/30 p-[1.25em]">
 						<div className="ps-[1em] pe-[0.8em] gap-[0.75em] py-[0.75em] rounded-[0.4em] flex items-center border-[0.025em] border-solid border-info/30 uppercase">
