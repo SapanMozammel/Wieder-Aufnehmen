@@ -119,7 +119,7 @@ const inboxList = [
 const AdminScreen = () => {
 	return (
 		<div className="w-full aspect-[16/10] relative text-[0.75vw] text-left !font-light text-black dark:text-white group/admin-dashboard">
-			<div className="h-full w-full flex bg-light/20 dark:bg-dark/20 backdrop-blur rounded-[0.6em] border-[0.025em] border-solid border-info/30 shadow-lg shadow-info/10 group-hover/admin-dashboard:scale-105 ease-in-out duration-1000 delay-500 pointer-events-none select-none">
+			<div className="h-full w-full flex bg-light/20 dark:bg-dark/20 backdrop-blur rounded-[0.6em] border-[0.025em] border-solid border-info/30 shadow-lg shadow-info/10 transition-transform group-hover/admin-dashboard:scale-105 ease-in-out duration-1000 delay-500 pointer-events-none select-none">
 				<div className="h-full w-full flex rounded-[0.6em] overflow-hidden tracking-widest">
 					<div className="w-1/4 shrink-0 bg-white/50 dark:bg-black/50 flex flex-col gap-[1em] border-e-[0.025em] border-solid border-info/30 p-[1.25em]">
 						<div className="ps-[1em] pe-[0.8em] gap-[0.75em] py-[0.75em] rounded-[0.4em] flex items-center border-[0.025em] border-solid border-info/30 uppercase">
@@ -263,6 +263,66 @@ const AdminScreen = () => {
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div className="absolute h-[12em] right-0 top-[20em] aspect-square translate-x-1/2 rounded-full border-[0.05em] border-solid border-info/50 bg-light/70 dark:bg-dark/70 backdrop-blur pointer-events-none select-none">
+				<div className="absolute inset-[0.2em]">
+					<svg
+						className="absolute inset-[1.3em] fill-none"
+						viewBox="-3.5 -3 112 112">
+						<path
+							d="M105 53C105 82.2711 81.4949 106 52.5 106C23.5051 106 0 82.2711 0 53C0 23.7289 23.5051 0 52.5 0C81.4949 0 105 23.7289 105 53Z"
+							className="stroke-info"
+							strokeOpacity="0.5"
+							strokeWidth="5"
+							strokeDasharray="0.5 5"></path>
+					</svg>
+					<div className="absolute inset-[1em] rounded-full border-[0.25em] border-solid border-info/50" />
+					<div className="absolute inset-[1em] text-[3.75em] font-extrabold flex items-center justify-center text-center text-black/70 dark:text-white/70">
+						98
+					</div>
+					<svg
+						className="absolute inset-[0.1em] fill-none"
+						viewBox="0 0 142 142">
+						<path
+							d="M71.0221 13.6042C71.0221 13.2841 71.2818 13.0243 71.6019 13.0275C83.5023 13.1465 95.0829 16.9269 104.766 23.8619C114.606 30.9094 121.993 40.8611 125.89 52.3204C129.786 63.7796 129.997 76.1714 126.493 87.7567C123.045 99.1569 116.169 109.213 106.808 116.562C106.556 116.76 106.192 116.712 105.997 116.458V116.458C105.802 116.205 105.85 115.841 106.101 115.643C115.271 108.442 122.005 98.5896 125.384 87.4211C128.818 76.0675 128.611 63.9236 124.792 52.6935C120.974 41.4634 113.735 31.7108 104.091 24.8042C94.6049 18.0102 83.2602 14.3056 71.6019 14.1867C71.2818 14.1834 71.0221 13.9242 71.0221 13.6042V13.6042Z"
+							fill="url(#svg-603159127_4294_paint1_linear_23183_18738)"></path>
+						<defs>
+							<linearGradient
+								id="svg-603159127_4294_paint1_linear_23183_18738"
+								x1="137.227"
+								y1="94.1453"
+								x2="0.0444619"
+								y2="29.9987"
+								gradientUnits="userSpaceOnUse">
+								<stop stopColor="#41ead4"></stop>
+								<stop
+									offset="0.75"
+									stopColor="transparent"></stop>
+							</linearGradient>
+						</defs>
+					</svg>
+					<svg
+						className="absolute inset-[0.1em] animate-spin-slow"
+						viewBox="0 0 100 100">
+						<path
+							id="curve-text"
+							fill="transparent"
+							strokeWidth="none"
+							d="M0 50a1 1 0 0 1 100 0A1 1 0 0 1 0 50"></path>
+						<text>
+							<textPath
+								className="fill-info/80"
+								dominantBaseline="Hanging"
+								fontFamily='"Inter", sans-serif'
+								fontSize="6"
+								href="#curve-text"
+								letterSpacing="0.1em">
+								PERFORMANCE - PERFORMANCE - PERFORMANCE -
+								PERFORMANCE - PERFORMANCE - PERFORMANCE -
+							</textPath>
+						</text>
+					</svg>
 				</div>
 			</div>
 		</div>

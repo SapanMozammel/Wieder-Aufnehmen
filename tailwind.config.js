@@ -97,6 +97,7 @@ module.exports = {
 			},
 			animation: {
 				noise: 'noise 1s linear infinite',
+				'spin-slow': 'spin 10s linear infinite',
 			},
 			keyframes: {
 				noise: {
