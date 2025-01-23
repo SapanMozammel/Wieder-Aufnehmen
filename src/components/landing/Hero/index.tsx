@@ -7,7 +7,7 @@ import HeroBackground from './HeroBackground';
 const Hero = () => {
 	return (
 		<section className="flex flex-col pt-20">
-			<div className="grow flex flex-col relative z-1">
+			<div className="grow flex flex-col relative z-2">
 				<HeroBackground>
 					<SectionSeparator lts rts lbs rbs bl ll rl>
 						<div className="container grow pt-16 sm:pt-24 lg:pt-32 flex flex-col items-center justify-center gap-4 w-full text-center">
