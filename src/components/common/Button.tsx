@@ -163,12 +163,12 @@ export const LinkButton = (
 						className="absolute inset-y-0 left-0 h-full aspect-21/44"
 						viewBox="0 0 21 44">
 						<path
-							className="fill-dark dark:fill-white stroke-dark dark:stroke-white group-hover/button:fill-primary-600 group-hover/button:stroke-primary-600 dark:group-hover/button:fill-warning dark:group-hover/button:stroke-warning group-disabled/button:!fill-secondary-400 group-disabled/button:!stroke-secondary-400 duration-150"
+							className="fill-dark dark:fill-white stroke-dark dark:stroke-white group-hover/link-button:fill-primary-600 group-hover/link-button:stroke-primary-600 dark:group-hover/link-button:fill-warning dark:group-hover/link-button:stroke-warning group-disabled/link-button:!fill-secondary-400 group-disabled/link-button:!stroke-secondary-400 duration-150"
 							strokeWidth="2"
 							d="M22,43.00005 L8.11111,43.00005 C4.18375,43.00005 1,39.58105 1,35.36365 L1,8.63637 C1,4.41892 4.18375,1 8.11111,1 L21,1"></path>
 					</svg>
 					<span className="relative h-full">
-						<span className="relative z-10 h-full inline-flex items-center justify-center px-[0.5em] text-xs sm:text-sm uppercase font-eb font-bold tracking-wider text-white dark:text-dark group-hover/button:text-white group-disabled/button:!text-secondary-500">
+						<span className="relative z-10 h-full inline-flex items-center justify-center px-[0.5em] text-xs sm:text-sm uppercase font-eb font-bold tracking-wider text-white dark:text-dark group-hover/link-button:text-white group-disabled/link-button:!text-secondary-500">
 							{children}
 						</span>
 						<svg
@@ -176,7 +176,7 @@ export const LinkButton = (
 							viewBox="0 0 100 44"
 							preserveAspectRatio="none">
 							<polygon
-								className="fill-dark dark:fill-white group-hover/button:fill-primary-600 dark:group-hover/button:fill-warning group-disabled/button:!fill-secondary-400 duration-150"
+								className="fill-dark dark:fill-white group-hover/link-button:fill-primary-600 dark:group-hover/link-button:fill-warning group-disabled/link-button:!fill-secondary-400 duration-150"
 								fillRule="nonzero"
 								points="101 0 101 44 0 44 0 0"></polygon>
 						</svg>
@@ -185,7 +185,7 @@ export const LinkButton = (
 						className="absolute inset-y-0 right-0 h-full aspect-21/44"
 						viewBox="0 0 21 44">
 						<path
-							className="fill-dark dark:fill-white stroke-dark dark:stroke-white group-hover/button:fill-primary-600 group-hover/button:stroke-primary-600 dark:group-hover/button:fill-warning dark:group-hover/button:stroke-warning group-disabled/button:!fill-secondary-400 group-disabled/button:!stroke-secondary-400 duration-150"
+							className="fill-dark dark:fill-white stroke-dark dark:stroke-white group-hover/link-button:fill-primary-600 group-hover/link-button:stroke-primary-600 dark:group-hover/link-button:fill-warning dark:group-hover/link-button:stroke-warning group-disabled/link-button:!fill-secondary-400 group-disabled/link-button:!stroke-secondary-400 duration-150"
 							strokeWidth="2"
 							d="M0,43.00005 L5.028,43.00005 L12.24,43.00005 C16.526,43.00005 20,39.58105 20,35.36365 L20,16.85855 C20,14.59295 18.978,12.44425 17.209,10.99335 L7.187,2.77111 C5.792,1.62675 4.034,1 2.217,1 L0,1"></path>
 					</svg>
@@ -205,12 +205,12 @@ export const LinkButton = (
 							<stop offset="100%" stopColor="var(--primary)" />
 						</linearGradient>
 						<path
-							className="fill-none stroke-[url(#btn-left)] group-disabled/button:!stroke-secondary-400"
+							className="fill-none stroke-[url(#btn-left)] group-disabled/link-button:!stroke-secondary-400"
 							strokeWidth="2"
 							d="M22,43.00005 L8.11111,43.00005 C4.18375,43.00005 1,39.58105 1,35.36365 L1,8.63637 C1,4.41892 4.18375,1 8.11111,1 L21,1"></path>
 					</svg>
 					<span className="relative h-full">
-						<span className="relative z-10 h-full inline-flex items-center justify-center px-[0.5em] text-xs sm:text-sm uppercase font-eb font-bold tracking-wider text-dark dark:text-white group-disabled/button:!text-secondary-500">
+						<span className="relative z-10 h-full inline-flex items-center justify-center px-[0.5em] text-xs sm:text-sm uppercase font-eb font-bold tracking-wider text-dark dark:text-white group-disabled/link-button:!text-secondary-500">
 							{children}
 						</span>
 						<svg
@@ -243,11 +243,11 @@ export const LinkButton = (
 								/>
 							</linearGradient>
 							<polygon
-								className="fill-[url(#btn-top)] group-disabled/button:fill-secondary-400"
+								className="fill-[url(#btn-top)] group-disabled/link-button:fill-secondary-400"
 								fillRule="nonzero"
 								points="101 0 101 2 0 2 0 0"></polygon>
 							<polygon
-								className="fill-[url(#btn-bottom)] group-disabled/button:fill-secondary-400"
+								className="fill-[url(#btn-bottom)] group-disabled/link-button:fill-secondary-400"
 								fillRule="nonzero"
 								points="101 42 101 44 0 44 0 42"></polygon>
 						</svg>
@@ -265,7 +265,7 @@ export const LinkButton = (
 							<stop offset="100%" stopColor="var(--danger)" />
 						</linearGradient>
 						<path
-							className="fill-none stroke-[url(#btn-right)] group-disabled/button:!stroke-secondary-400"
+							className="fill-none stroke-[url(#btn-right)] group-disabled/link-button:!stroke-secondary-400"
 							strokeWidth="2"
 							d="M0,43.00005 L5.028,43.00005 L12.24,43.00005 C16.526,43.00005 20,39.58105 20,35.36365 L20,16.85855 C20,14.59295 18.978,12.44425 17.209,10.99335 L7.187,2.77111 C5.792,1.62675 4.034,1 2.217,1 L0,1"></path>
 					</svg>
