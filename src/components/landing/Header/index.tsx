@@ -17,7 +17,7 @@ const Loader = () => {
 
 const Header = () => {
 	return (
-		<header className="fixed backdrop-blur-xl inset-x-0 top-0 h-20 z-2 flex flex-col border-b border-solid border-secondary-400 dark:border-secondary-600">
+		<header className="fixed backdrop-blur-xl inset-x-0 top-0 h-20 z-10 flex flex-col border-b border-solid border-secondary-400 dark:border-secondary-600">
 			<div className="container-fluid grow flex flex-col w-full">
 				<div className="grow flex items-center justify-between">
 					<Link
