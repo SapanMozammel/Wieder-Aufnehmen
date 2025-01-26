@@ -1,3 +1,4 @@
+import Cloud from '@/components/icons/Cloud';
 import {
 	ArchiveIcon,
 	ArchiveXIcon,
@@ -81,19 +82,19 @@ const inboxList = [
 	{
 		name: 'Charlotte Lee',
 		email: 'charlottelee@example.com',
-		title: 'Team Outing Plans',
-		time: '2 days ago',
-		tags: ['team', 'outing', 'social'],
-		message: `Hey Everyone, Let’s finalize the plans for the team outing this Friday. Please RSVP by tomorrow evening so we can make necessary arrangements. <br /> <br />Cheers, Charlotte`,
+		title: 'Project Proposal Review',
+		time: '2 day ago',
+		tags: ['proposal', 'review', 'high-priority'],
+		message: `Hello, I have attached the project proposal for your review. Please provide feedback and let me know if there are any changes required. I’d like to finalize this by the end of the week. <br /> <br />Thanks, Sophia`,
 		status: 'read',
 	},
 	{
 		name: 'Sophia Johnson',
 		email: 'sophiajohnson@example.com',
-		title: 'Project Proposal Review',
-		time: '3 day ago',
-		tags: ['proposal', 'review', 'high-priority'],
-		message: `Hello, I have attached the project proposal for your review. Please provide feedback and let me know if there are any changes required. I’d like to finalize this by the end of the week. <br /> <br />Thanks, Sophia`,
+		title: 'Team Outing Plans',
+		time: '3 days ago',
+		tags: ['team', 'outing', 'social'],
+		message: `Hey Everyone, Let’s finalize the plans for the team outing this Friday. Please RSVP by tomorrow evening so we can make necessary arrangements. <br /> <br />Cheers, Charlotte`,
 		status: 'unread',
 	},
 	{
@@ -265,6 +266,25 @@ const AdminScreen = () => {
 					</div>
 				</div>
 			</div>
+			<div className="absolute w-[22em] -right-[4em] -top-[4em] rounded-[2.25em] border-[0.05em] border-solid border-info/20 bg-light/10 dark:bg-dark/10 backdrop-blur transition-transform group-hover/admin-dashboard:-translate-x-[1em] group-hover/admin-dashboard:scale-105 ease-in-out duration-1000 delay-500 pointer-events-none select-none flex flex-col items-start p-[1.5em]">
+				<div className="w-full p-[1em] rounded-[1em] backdrop:blur-md bg-white/30 dark:bg-dark/30 border-[0.05em] border-solid border-info/30 flex items-center justify-center">
+					<Cloud className="w-[9em]" />
+				</div>
+				<div className="mt-[0.9em] text-[1.4em] leading-snug font-semibold">
+					Designing a Travel App
+				</div>
+				<div className="mt-[0.8em] text-[0.9em] leading-snug font-light text-secondary-600 dark:text-secondary-300">
+					Embark on a creative journey as you learn how to design a
+					captivating travel app from concept to user-centric
+					experience. This comprehensive course in Figma will immerse
+					you in the world of travel app design, covering everything
+					from user interface aesthetics to intuitive user experiences
+					(UX).
+				</div>
+				<div className="mt-[1.3em] h-[2.5em] px-[1.5em] text-[1em] font-bold bg-info/30 uppercase rounded-[0.4em] inline-flex items-center justify-center">
+					Accept
+				</div>
+			</div>
 			<div className="absolute h-[12em] right-0 top-[20em] aspect-square translate-x-1/2 rounded-full border-[0.05em] border-solid border-info/50 bg-light/70 dark:bg-dark/70 backdrop-blur pointer-events-none select-none">
 				<div className="absolute inset-[0.2em]">
 					<svg
@@ -281,27 +301,6 @@ const AdminScreen = () => {
 					<div className="absolute inset-[1em] text-[3.75em] font-extrabold flex items-center justify-center text-center text-black/70 dark:text-white/70">
 						98
 					</div>
-					<svg
-						className="absolute inset-[0.1em] fill-none"
-						viewBox="0 0 142 142">
-						<path
-							d="M71.0221 13.6042C71.0221 13.2841 71.2818 13.0243 71.6019 13.0275C83.5023 13.1465 95.0829 16.9269 104.766 23.8619C114.606 30.9094 121.993 40.8611 125.89 52.3204C129.786 63.7796 129.997 76.1714 126.493 87.7567C123.045 99.1569 116.169 109.213 106.808 116.562C106.556 116.76 106.192 116.712 105.997 116.458V116.458C105.802 116.205 105.85 115.841 106.101 115.643C115.271 108.442 122.005 98.5896 125.384 87.4211C128.818 76.0675 128.611 63.9236 124.792 52.6935C120.974 41.4634 113.735 31.7108 104.091 24.8042C94.6049 18.0102 83.2602 14.3056 71.6019 14.1867C71.2818 14.1834 71.0221 13.9242 71.0221 13.6042V13.6042Z"
-							fill="url(#svg-603159127_4294_paint1_linear_23183_18738)"></path>
-						<defs>
-							<linearGradient
-								id="svg-603159127_4294_paint1_linear_23183_18738"
-								x1="137.227"
-								y1="94.1453"
-								x2="0.0444619"
-								y2="29.9987"
-								gradientUnits="userSpaceOnUse">
-								<stop stopColor="#41ead4"></stop>
-								<stop
-									offset="0.75"
-									stopColor="transparent"></stop>
-							</linearGradient>
-						</defs>
-					</svg>
 					<svg
 						className="absolute inset-[0.1em] animate-spin-slow"
 						viewBox="0 0 100 100">
@@ -323,6 +322,162 @@ const AdminScreen = () => {
 							</textPath>
 						</text>
 					</svg>
+				</div>
+			</div>
+			<div className="absolute h-[9em] -left-[2.5em] top-[7em] aspect-square -translate-x-1/2 -translate-y-1/2 rounded-full border-[0.05em] border-solid border-info/50 bg-light/70 dark:bg-dark/70 backdrop-blur pointer-events-none select-none">
+				<div className="absolute inset-[0.2em]">
+					<svg
+						viewBox="-4 -4 148 148"
+						xmlns="http://www.w3.org/2000/svg"
+						className="absolute -inset-[1.1em] fill-none">
+						<g filter="url(#half-wave-wrapper)">
+							<path
+								d="M70 140C88.5652 140 106.37 132.625 119.497 119.497C132.625 106.37 140 88.5652 140 70C140 51.4349 132.625 33.6301 119.497 20.5025C106.37 7.37499 88.5652 8.63117e-06 70 0"
+								stroke="url(#half-wave-stroke)"
+								strokeWidth="8"
+								strokeDasharray="0.8 5"></path>
+						</g>
+						<defs>
+							<filter
+								id="half-wave-wrapper"
+								x="70"
+								y="-4"
+								width="74"
+								height="148"
+								filterUnits="userSpaceOnUse"
+								colorInterpolationFilters="sRGB">
+								<feFlood
+									floodOpacity="0"
+									result="BackgroundImageFix"></feFlood>
+								<feBlend
+									mode="normal"
+									in="SourceGraphic"
+									in2="BackgroundImageFix"
+									result="shape"></feBlend>
+								<feColorMatrix
+									in="SourceAlpha"
+									type="matrix"
+									values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+									result="hardAlpha"></feColorMatrix>
+								<feOffset dy="1"></feOffset>
+								<feComposite
+									in2="hardAlpha"
+									operator="arithmetic"
+									k2="-1"
+									k3="1"></feComposite>
+								<feColorMatrix
+									type="matrix"
+									values="0 0 0 0 0.556863 0 0 0 0 0.607843 0 0 0 0 0.682353 0 0 0 0.5 0"></feColorMatrix>
+								<feBlend
+									mode="normal"
+									in2="shape"
+									result="effect1_innerShadow_23632_3864"></feBlend>
+							</filter>
+							<linearGradient
+								id="half-wave-stroke"
+								x1="99.1609"
+								y1="3.0511"
+								x2="130.689"
+								y2="119.502"
+								gradientUnits="userSpaceOnUse">
+								<stop stopColor="#FFD057"></stop>
+								<stop
+									offset="0.965972"
+									stopColor="#41EAD4"></stop>
+							</linearGradient>
+						</defs>
+					</svg>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className="absolute inset-0 fill-none"
+						viewBox="-1 -1 124 124">
+						<path
+							fill="url(#half-line-gradient)"
+							d="M61 120.17c0 1.011.82 1.833 1.83 1.803a61.01 61.01 0 0 0 54.527-37.63 61 61 0 0 0 0-46.687A61 61 0 0 0 62.83.027C61.82-.003 61 .82 61 1.83s.82 1.827 1.83 1.86a57.34 57.34 0 0 1 0 114.621c-1.01.032-1.83.848-1.83 1.859"></path>
+						<path
+							stroke="#fff"
+							strokeOpacity="0.1"
+							d="M61 120.17c0 1.011.82 1.833 1.83 1.803a61.01 61.01 0 0 0 54.527-37.63 61 61 0 0 0 0-46.687A61 61 0 0 0 62.83.027C61.82-.003 61 .82 61 1.83s.82 1.827 1.83 1.86a57.34 57.34 0 0 1 0 114.621c-1.01.032-1.83.848-1.83 1.859Z"></path>
+						<defs>
+							<linearGradient
+								id="half-line-gradient"
+								x1="19.409"
+								x2="122"
+								y1="0"
+								y2="122"
+								gradientUnits="userSpaceOnUse">
+								<stop stopColor="#fff"></stop>
+								<stop offset="0.75" stopColor="#1f8fff"></stop>
+							</linearGradient>
+						</defs>
+					</svg>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						className="w-[4em] aspect-square fill-none absolute bottom-[0.1em] left-1/2 -translate-x-1/2 translate-y-1/2"
+						viewBox="-1 -1 51 51">
+						<g filter="url(#triangle-wrapper)">
+							<path
+								fill="url(#triangle-fill)"
+								fillOpacity="0.9"
+								d="M35.23 25.292c2.018 3.278-.27 7.51-4.117 7.618l-13.11.368c-3.848.108-6.37-3.99-4.539-7.376l6.237-11.537c1.83-3.386 6.64-3.52 8.657-.243z"></path>
+						</g>
+						<defs>
+							<radialGradient
+								id="triangle-fill"
+								cx="0"
+								cy="0"
+								r="1"
+								gradientTransform="matrix(-19.23654 -10.39856 5.15443 -9.53531 24.295 24.342)"
+								gradientUnits="userSpaceOnUse">
+								<stop stopColor="#2E335A"></stop>
+								<stop
+									offset="1"
+									stopColor="#1C1B33"
+									stopOpacity="0.7"></stop>
+							</radialGradient>
+							<filter
+								id="triangle-wrapper"
+								width="45.127"
+								height="43.537"
+								x="1.854"
+								y="0.743"
+								colorInterpolationFilters="sRGB"
+								filterUnits="userSpaceOnUse">
+								<feFlood
+									floodOpacity="0"
+									result="BackgroundImageFix"></feFlood>
+								<feGaussianBlur
+									in="BackgroundImageFix"
+									stdDeviation="5"></feGaussianBlur>
+								<feComposite
+									in2="SourceAlpha"
+									operator="in"
+									result="effect1_backgroundBlur_23632_3869"></feComposite>
+								<feBlend
+									in="SourceGraphic"
+									in2="effect1_backgroundBlur_23632_3869"
+									result="shape"></feBlend>
+								<feColorMatrix
+									in="SourceAlpha"
+									result="hardAlpha"
+									values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"></feColorMatrix>
+								<feOffset></feOffset>
+								<feGaussianBlur stdDeviation="10"></feGaussianBlur>
+								<feComposite
+									in2="hardAlpha"
+									k2="-1"
+									k3="1"
+									operator="arithmetic"></feComposite>
+								<feColorMatrix values="0 0 0 0 0.497041 0 0 0 0 0.638518 0 0 0 0 0.740967 0 0 0 0.52 0"></feColorMatrix>
+								<feBlend
+									in2="shape"
+									result="effect2_innerShadow_23632_3869"></feBlend>
+							</filter>
+						</defs>
+					</svg>
+					<div className="absolute inset-0 inline-flex items-center justify-center text-[2.75em] font-extrabold tracking-tighter text-black/70 dark:text-white/70">
+						50%
+					</div>
 				</div>
 			</div>
 		</div>
