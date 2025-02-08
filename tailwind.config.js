@@ -39,16 +39,15 @@ module.exports = {
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
-					600: '#4B4DED',
 					foreground: 'hsl(var(--primary-foreground))',
 				},
-				success: '#41EAD4',
+				success: 'hsl(var(--success))',
 				warning: {
 					DEFAULT: '#ff6f00',
 					light: '#FFD057',
 				},
 				danger: { 400: '#f56565', 500: '#E83423' },
-				info: { DEFAULT: '#2196F3', 500: '#1f8fff' },
+				info: 'hsl(var(--info))',
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {

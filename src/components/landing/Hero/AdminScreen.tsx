@@ -175,7 +175,7 @@ const AdminScreen = () => {
 													className={`inline-flex items-center gap-[0.5em] text-[1em] leading-none font-bold ${
 														inbox.status ===
 														'unread'
-															? 'after:h-[0.6em] after:aspect-square after:bg-primary-600 after:rounded-full'
+															? 'after:h-[0.6em] after:aspect-square after:bg-primary after:rounded-full'
 															: ''
 													}`}>
 													{inbox.name}

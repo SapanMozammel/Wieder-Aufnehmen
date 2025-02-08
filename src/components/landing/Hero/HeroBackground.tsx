@@ -23,7 +23,7 @@ const HeroBackground = (
 				<div className="absolute inset-0 flex items-center justify-center">
 					<Pattern className="h-full w-auto text-secondary-700 dark:text-secondary-400" />
 				</div>
-				<div className="absolute w-256 max-w-full aspect-square top-1/2 left-1/2 bg-gradient-radial from-info-500/50 via-info-500/15 via-40% to-transparent to-60% -translate-x-1/2 -translate-y-1/2"></div>
+				<div className="absolute w-256 max-w-full aspect-square top-1/2 left-1/2 bg-gradient-radial from-info/50 via-info/15 via-40% to-transparent to-60% -translate-x-1/2 -translate-y-1/2"></div>
 			</div>
 		</React.Fragment>
 	);

@@ -33,7 +33,7 @@ const Header = () => {
 						<Link
 							href="https://github.com/SapanMozammel"
 							target="_blank"
-							className="h-8 aspect-square inline-flex items-center justify-center cursor-pointer text-black hover:text-warning dark:text-white dark:hover:text-success ease-in-out">
+							className="h-8 aspect-square inline-flex items-center justify-center cursor-pointer text-black hover:text-primary dark:text-white dark:hover:text-success ease-in-out">
 							<GithubIcon className="w-5" />
 						</Link>
 					</div>
