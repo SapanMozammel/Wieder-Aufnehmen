@@ -1,67 +1,75 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@use 'tailwindcss';
+@custom-variant dark (&:where(.dark, .dark *));
 
-@layer base {
-	:root {
-		--background: 0 0% 100%;
-		--foreground: 222.2 84% 4.9%;
-		--card: 0 0% 100%;
-		--card-foreground: 222.2 84% 4.9%;
-		--popover: 0 0% 100%;
-		--popover-foreground: 222.2 84% 4.9%;
-		--primary: 239 82% 61%;
-		--success: 172 80% 59%;
-		--warning: #ff6f00;
-		--danger: #f56565;
-		--info: 210 100% 56%;
-		--primary-foreground: 210 40% 98%;
-		--secondary: 210 40% 96.1%;
-		--secondary-foreground: 222.2 47.4% 11.2%;
-		--muted: 210 40% 96.1%;
-		--muted-foreground: 215.4 16.3% 46.9%;
-		--accent: 210 40% 96.1%;
-		--accent-foreground: 222.2 47.4% 11.2%;
-		--destructive: 0 84.2% 60.2%;
-		--destructive-foreground: 210 40% 98%;
-		--border: 214.3 31.8% 91.4%;
-		--input: 214.3 31.8% 91.4%;
-		--ring: 222.2 84% 4.9%;
-		--chart-1: 12 76% 61%;
-		--chart-2: 173 58% 39%;
-		--chart-3: 197 37% 24%;
-		--chart-4: 43 74% 66%;
-		--chart-5: 27 87% 67%;
-		--radius: 0.5rem;
+@theme {
+	// font family
+	--font-dm: var(--font-dm);
+	--font-eb: var(--font-eb);
+	--font-hg: var(--font-hg);
+	// colors
+	--color-white: #ffffff;
+	--color-black: #0e0c15;
+	--color-light: #ecf1f4;
+	--color-dark: #0e0e2c;
+	--color-primary: #4a4ded;
+	--color-secondary: #f1f5f9;
+	--color-secondary-100: #e3ecf5;
+	--color-secondary-200: #d9e5f1;
+	--color-secondary-300: #bacfe6;
+	--color-secondary-400: #94a3b8;
+	--color-secondary-500: #5c637e;
+	--color-secondary-600: #3d444d;
+	--color-secondary-700: #334155;
+	--color-secondary-800: #212a3e;
+	--color-secondary-900: #0f172a;
+	--color-success: #43ead4;
+	--color-info: #1f8fff;
+	--color-warning: #ff6f00;
+	--color-warning-light: #f4a462;
+	--color-danger: #f56565;
+	// animation
+	--animate-noise: noise 1s linear infinite;
+	--animate-spin-slow: spin 10s linear infinite;
+	// keyframes
+	@keyframes noise {
+		0%,
+		100% {
+			background-position: 0% 0%;
+		}
+		50% {
+			background-position: 400% 400%;
+		}
 	}
-	.dark {
-		--background: 222.2 84% 4.9%;
-		--foreground: 210 40% 98%;
-		--card: 222.2 84% 4.9%;
-		--card-foreground: 210 40% 98%;
-		--popover: 222.2 84% 4.9%;
-		--popover-foreground: 210 40% 98%;
-		--primary: 239 82% 61%;
-		--success: 172 80% 59%;
-		--warning: #ff6f00;
-		--danger: #f56565;
-		--info: 210 100% 56%;
-		--primary-foreground: 222.2 47.4% 11.2%;
-		--secondary: 217.2 32.6% 17.5%;
-		--secondary-foreground: 210 40% 98%;
-		--muted: 217.2 32.6% 17.5%;
-		--muted-foreground: 215 20.2% 65.1%;
-		--accent: 217.2 32.6% 17.5%;
-		--accent-foreground: 210 40% 98%;
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 210 40% 98%;
-		--border: 217.2 32.6% 17.5%;
-		--input: 217.2 32.6% 17.5%;
-		--ring: 212.7 26.8% 83.9%;
-		--chart-1: 220 70% 50%;
-		--chart-2: 160 60% 45%;
-		--chart-3: 30 80% 55%;
-		--chart-4: 280 65% 60%;
-		--chart-5: 340 75% 55%;
+}
+
+@utility container {
+	margin-inline: auto;
+	max-width: 100%;
+	padding-inline: 1.5rem;
+	@media (width >= theme(--breakpoint-md)) {
+		max-width: 80%;
+		padding-inline: 0;
+	}
+}
+
+@utility container-fluid {
+	margin-inline: auto;
+	max-width: 100%;
+	padding-inline: 1.5rem;
+	@media (width >= theme(--breakpoint-md)) {
+		padding-inline: 2.5rem;
+	}
+}
+
+@utility section-separator {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0.75rem;
+	right: 0.75rem;
+	z-index: -1;
+	@media (width >= theme(--breakpoint-md)) {
+		left: 2.5rem;
+		right: 2.5rem;
 	}
 }

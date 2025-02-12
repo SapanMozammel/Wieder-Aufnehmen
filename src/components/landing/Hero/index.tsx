@@ -15,7 +15,7 @@ const Hero = () => {
 								Hi, I am Sapan Mozammel, <br /> a fullstack
 								frontend developer.
 							</h1>
-							<h2 className="inline-block font-hg text-lg sm:text-4xl lg:text-5xl font-extrabold !leading-tight bg-gradient-radial via-45% to-75% from-slate-500 via-black to-slate-500 dark:from-slat-600 dark:via-light dark:to-slate-400 text-transparent bg-clip-text">
+							<h2 className="inline-block font-hg text-lg sm:text-4xl lg:text-5xl font-extrabold !leading-tight bg-radial via-45% to-75% from-slate-500 via-black to-slate-500 dark:from-slat-600 dark:via-light dark:to-slate-400 text-transparent bg-clip-text">
 								With every line of{' '}
 								<TextUnderline className="text-black dark:text-white">
 									JavaScript

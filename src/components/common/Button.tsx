@@ -69,8 +69,8 @@ export const Button = (
 							x2="50%"
 							y1="0%"
 							y2="100%">
-							<stop offset="0%" stopColor="var(--success)" />
-							<stop offset="100%" stopColor="var(--primary)" />
+							<stop offset="0%" stopColor="var(--color-success)" />
+							<stop offset="100%" stopColor="var(--color-primary)" />
 						</linearGradient>
 						<path
 							className="fill-none stroke-[url(#btn-left)] group-disabled/button:!stroke-secondary-400"
@@ -92,10 +92,10 @@ export const Button = (
 								x2="0%"
 								y1="50%"
 								y2="50%">
-								<stop offset="0%" stopColor="var(--danger)" />
+								<stop offset="0%" stopColor="var(--color-danger)" />
 								<stop
 									offset="100%"
-									stopColor="var(--primary)"
+									stopColor="var(--color-primary)"
 								/>
 							</linearGradient>
 							<linearGradient
@@ -104,10 +104,10 @@ export const Button = (
 								x2="0%"
 								y1="50%"
 								y2="50%">
-								<stop offset="0%" stopColor="var(--info)" />
+								<stop offset="0%" stopColor="var(--color-info)" />
 								<stop
 									offset="100%"
-									stopColor="var(--success)"
+									stopColor="var(--color-success)"
 								/>
 							</linearGradient>
 							<polygon
@@ -129,8 +129,8 @@ export const Button = (
 							x2="14.635%"
 							y1="0%"
 							y2="100%">
-							<stop offset="0%" stopColor="var(--info)" />
-							<stop offset="100%" stopColor="var(--danger)" />
+							<stop offset="0%" stopColor="var(--color-info)" />
+							<stop offset="100%" stopColor="var(--color-danger)" />
 						</linearGradient>
 						<path
 							className="fill-none stroke-[url(#btn-right)] group-disabled/button:!stroke-secondary-400"
@@ -201,8 +201,8 @@ export const LinkButton = (
 							x2="50%"
 							y1="0%"
 							y2="100%">
-							<stop offset="0%" stopColor="var(--success)" />
-							<stop offset="100%" stopColor="var(--primary)" />
+							<stop offset="0%" stopColor="var(--color-success)" />
+							<stop offset="100%" stopColor="var(--color-primary)" />
 						</linearGradient>
 						<path
 							className="fill-none stroke-[url(#btn-left)] group-disabled/link-button:!stroke-secondary-400"
@@ -224,10 +224,10 @@ export const LinkButton = (
 								x2="0%"
 								y1="50%"
 								y2="50%">
-								<stop offset="0%" stopColor="var(--danger)" />
+								<stop offset="0%" stopColor="var(--color-danger)" />
 								<stop
 									offset="100%"
-									stopColor="var(--primary)"
+									stopColor="var(--color-primary)"
 								/>
 							</linearGradient>
 							<linearGradient
@@ -236,10 +236,10 @@ export const LinkButton = (
 								x2="0%"
 								y1="50%"
 								y2="50%">
-								<stop offset="0%" stopColor="var(--info)" />
+								<stop offset="0%" stopColor="var(--color-info)" />
 								<stop
 									offset="100%"
-									stopColor="var(--success)"
+									stopColor="var(--color-success)"
 								/>
 							</linearGradient>
 							<polygon
@@ -261,8 +261,8 @@ export const LinkButton = (
 							x2="14.635%"
 							y1="0%"
 							y2="100%">
-							<stop offset="0%" stopColor="var(--info)" />
-							<stop offset="100%" stopColor="var(--danger)" />
+							<stop offset="0%" stopColor="var(--color-info)" />
+							<stop offset="100%" stopColor="var(--color-danger)" />
 						</linearGradient>
 						<path
 							className="fill-none stroke-[url(#btn-right)] group-disabled/link-button:!stroke-secondary-400"
