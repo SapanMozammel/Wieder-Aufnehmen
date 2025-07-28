@@ -1,80 +1,152 @@
 ## 📊 Authorized User Access Control Matrix | Only applicable on Dashboard
 
-| Feature                         | Super-Admin | Admin | Manager | User | Subscriber |
-| ------------------------------- | ----------- | ----- | ------- | ---- | ---------- |
-| Dashboard Access                | ❌          | ❌    | ❌      | ✅   | ❌         |
-| Full Analytics                  | ✅          | ❌    | ❌      | ❌   | ❌         |
-| Limited Analytics               | ✅          | ✅    | ✅      | ❌   | ❌         |
-| Create Apps/Projects            | ✅          | ❌    | ❌      | ❌   | ❌         |
-| Manage Apps/Projects            | ✅          | ✅    | ✅      | ❌   | ❌         |
-| Role Management                 | ✅          | ❌    | ❌      | ❌   | ❌         |
-| Permission Management           | ✅          | ❌    | ❌      | ❌   | ❌         |
-| User Management                 | ✅          | ✅    | ✅      | ❌   | ❌         |
-| Create App Request              | ✅          | ✅    | ✅      | ✅   | ❌         |
-| Assign App Manager              | ✅          | ❌    | ❌      | ❌   | ❌         |
-| App Request Management          | ✅          | ✅    | ✅      | ❌   | ❌         |
-| See App Request History         | ✅          | ✅    | ✅      | ✅   | ❌         |
-| Create Feature Request          | ❌          | ❌    | ❌      | ✅   | ❌         |
-| Assign Feature Manager          | ✅          | ❌    | ❌      | ❌   | ❌         |
-| Feature Request Management      | ✅          | ✅    | ✅      | ❌   | ❌         |
-| See Feature Request History     | ✅          | ✅    | ✅      | ✅   | ❌         |
-| Content Moderation              | ✅          | ✅    | ✅      | ❌   | ❌         |
-| System Settings                 | ✅          | ❌    | ❌      | ❌   | ❌         |
-| Feature Enable/Disable Settings | ✅          | ❌    | ❌      | ❌   | ❌         |
-| Billing Management              | ✅          | ❌    | ❌      | ❌   | ❌         |
-| Billing History                 | ✅          | ✅    | ✅      | ❌   | ❌         |
-| Personal Billing                | ❌          | ❌    | ❌      | ✅   | ❌         |
-| General Blog Management         | ✅          | ✅    | ✅      | ❌   | ❌         |
-| Founder Blog Management         | ✅          | ❌    | ❌      | ❌   | ❌         |
-| Founder Portfolio Management    | ✅          | ❌    | ❌      | ❌   | ❌         |
-| Profile Management              | ✅          | ✅    | ✅      | ✅   | ❌         |
-| Provide Support                 | ✅          | ✅    | ✅      | ❌   | ❌         |
-| Receive Support                 | ❌          | ❌    | ❌      | ✅   | ✅         |
-| Marketing Mails Management      | ✅          | ✅    | ✅      | ❌   | ❌         |
-| Get Marketing Mails             | ❌          | ❌    | ❌      | ✅   | ✅         |
+| Category           | Feature                        | Director | Project Manager | Admin | User | Subscriber |
+| ------------------ | ------------------------------ | -------- | --------------- | ----- | ---- | ---------- |
+| 🖥 Dashboard       | **Analytics Dashboard Access** | ✅       | ✅              | ✅    | ❌   | ❌         |
+|                    | **User Dashboard Access**      | ❌       | ❌              | ❌    | ✅   | ❌         |
+| 📊 Analytics       | Full Analytics                 | ✅       | ❌              | ❌    | ❌   | ❌         |
+|                    | Limited Analytics              | ✅       | ✅              | ✅    | ❌   | ❌         |
+| 🧪 App Management  | Create Apps/Projects           | ✅       | ❌              | ❌    | ❌   | ❌         |
+|                    | Manage Apps/Projects           | ✅       | ✅              | ✅    | ❌   | ❌         |
+|                    | Assign App/Projects Manager    | ✅       | ❌              | ❌    | ❌   | ❌         |
+|                    | App/Projects Management        | ✅       | ✅              | ✅    | ❌   | ❌         |
+|                    | Feature Request Management     | ✅       | ✅              | ✅    | ❌   | ❌         |
+| 🙋 Requests        | Create App Request             | ✅       | ✅              | ✅    | ✅   | ❌         |
+|                    | Create Feature Request         | ❌       | ❌              | ❌    | ✅   | ❌         |
+| 💼 User Management | User Management                | ✅       | ✅              | ✅    | ❌   | ❌         |
+| 🛠 Settings        | System Settings                | ✅       | ❌              | ❌    | ❌   | ❌         |
+|                    | Access Toggle Settings         | ✅       | ❌              | ❌    | ❌   | ❌         |
+| 💳 Billing         | Billing Management             | ✅       | ❌              | ❌    | ❌   | ❌         |
+|                    | Billing History                | ✅       | ✅              | ✅    | ❌   | ❌         |
+|                    | Personal Billing               | ❌       | ❌              | ❌    | ✅   | ❌         |
+| ✍️ Content         | Director Blog Management       | ✅       | ❌              | ❌    | ❌   | ❌         |
+|                    | General Blog Management        | ✅       | ✅              | ✅    | ❌   | ❌         |
+|                    | Director Portfolio Management  | ✅       | ❌              | ❌    | ❌   | ❌         |
+| 📇 Profile         | Profile Management             | ✅       | ✅              | ✅    | ✅   | ❌         |
+| 📬 Support         | Provide Support                | ✅       | ✅              | ✅    | ❌   | ❌         |
+|                    | Receive Support                | ❌       | ❌              | ❌    | ✅   | ❌         |
+| 📢 Marketing       | Marketing Mail Management      | ✅       | ✅              | ✅    | ❌   | ❌         |
+|                    | Receive Marketing Mails        | ❌       | ❌              | ❌    | ✅   | ✅         |
 
-## Five-Tier User System:
+## 🧩 Five-Tier User System (Updated)
 
-### 🔑 Super-Admin (Founder)
+### 🔑 Director (Founder)
 
-- **Full system access** with all permissions
-- **Founder content management** (personal blog, portfolio)
-- **Admin and Manager creation** (create, edit, delete admin/manager accounts)
-- **Financial oversight** and system settings
-- **Apps/Projects creation** (only super-admin can create new apps/projects)
-- **Role and permission management** (super-admin only)
-- **Billing management** and system configuration
+- **Access**: Analytics Dashboard
+- **Analytics**: Full system analytics
+- **App/Project**:
+  - Create new apps/projects
+  - Manage assigned apps/projects
+  - Assign App/Project Managers
+- **Role & User Management**:
+  - Manage all roles (Project Managers, Admins)
+  - Manage all users
+- **Content**:
+  - Director blog management
+  - Director portfolio management
+  - General blog management
+- **Billing**:
+  - Manage system billing
+  - View billing history
+- **Settings**:
+  - Access and manage system settings
+  - Feature access toggle
+- **Marketing**:
+  - Marketing mail management
+- **Support**:
+  - Provide support to users
+- ❌ Cannot access the User Dashboard (not applicable)
+
+---
+
+### 👨‍🔧 Project Manager
+
+- **Access**: Analytics Dashboard
+- **Analytics**: Limited analytics (project-related)
+- **App/Project**:
+  - Manage existing apps/projects
+  - View app/feature requests
+- **User Management**:
+  - Manage Users and Subscribers
+- **Content**:
+  - General blog management
+- **Billing**:
+  - View billing history
+- **Marketing**:
+  - Marketing mail management
+- **Support**:
+  - Provide support to users
+- ❌ Cannot:
+  - Create new apps/projects
+  - Assign managers
+  - Access system settings or toggle features
+  - Manage Director blog or portfolio
+  - Access User Dashboard
+
+---
 
 ### 👨‍💼 Admin
 
-- **User management** and support (users and subscribers)
-- **Content moderation** for general blog/apps
-- **Limited analytics** (user-focused metrics)
-- **Order management** and processing
-- **Marketing management** (newsletters, campaigns)
-- **Cannot access** founder content, system settings, or create apps/projects
+- **Access**: Analytics Dashboard
+- **Analytics**: Limited analytics (project-related)
+- **App/Project**:
+  - Manage existing apps/projects
+  - View app/feature requests
+- **User Management**:
+  - Manage Users and Subscribers
+- **Content**:
+  - General blog management
+- **Billing**:
+  - View billing history
+- **Marketing**:
+  - Marketing mail management
+- **Support**:
+  - Provide support to users
+- ❌ Cannot:
+  - Create new apps/projects
+  - Assign managers
+  - Access system settings or toggle features
+  - Manage Director blog or portfolio
+  - Access User Dashboard
 
-### � Manager
-
-- **User management** and support (users and subscribers)
-- **Content moderation** for general blog/apps
-- **Limited analytics** (user-focused metrics)
-- **App/Project management** (manage existing, cannot create new)
-- **Marketing management** (newsletters, campaigns)
-- **Cannot access** founder content, system settings, or role management
+---
 
 ### 👤 User
 
-- **Dashboard access** with personal features
-- **Service requests** (app requests, feature requests)
-- **Personal billing** and order management
-- **Profile management**
-- **No access** to admin areas or content creation
+- **Access**: User Dashboard
+- **Requests**:
+  - Create app requests
+  - Create feature requests
+  - View request history
+- **Billing**:
+  - Personal billing and order management
+- **Profile**:
+  - Manage personal profile
+- **Support**:
+  - Receive support
+- **Marketing**:
+  - Receive marketing emails
+- ❌ Cannot:
+  - Access Analytics Dashboard
+  - View analytics
+  - Manage or create apps/projects
+  - Moderate content
+  - Manage users or system settings
+
+---
 
 ### 📧 Subscriber
 
-- **No dashboard access**
-- **Receive support** and marketing emails
-- **Basic profile** (name, email, preferences)
-- **Read-only access** to public content (if applicable)
-- **Newsletter subscription** management
+- ❌ No dashboard access
+- **Marketing**:
+  - Receive marketing emails
+- **Public Access**:
+  - Read-only access to public content
+- **Newsletter**:
+  - Receive newsletter via emails
+- ❌ Cannot:
+  - Submit requests
+  - Access analytics
+  - Manage apps/projects
+  - Access any dashboard
+  - Moderate content or manage users

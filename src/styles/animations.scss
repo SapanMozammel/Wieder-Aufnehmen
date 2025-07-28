@@ -1,0 +1,15 @@
+@theme {
+	// animation
+	--animate-noise: noise 1s linear infinite;
+	--animate-spin-slow: spin 10s linear infinite;
+	// keyframes
+	@keyframes noise {
+		0%,
+		100% {
+			background-position: 0% 0%;
+		}
+		50% {
+			background-position: 400% 400%;
+		}
+	}
+}

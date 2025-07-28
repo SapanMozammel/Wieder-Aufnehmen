@@ -1,0 +1,66 @@
+## 🎛️ Configuration
+
+```config
+# Basic Formatting
+PRINT_WIDTH=220
+INDENT_STYLE=tab
+INDENT_SIZE=4
+USE_SINGLE_QUOTES=true
+USE_SEMICOLONS=true
+TRAILING_COMMA=es5
+
+# Advanced Formatting
+BRACKET_SPACING=true
+ARROW_PARENS=always
+END_OF_LINE=lf
+BRACKET_SAME_LINE=false
+PROSE_WRAP=preserve
+
+# File-Specific Settings
+CSS_SINGLE_QUOTES=true
+JSON_TRAILING_COMMA=none
+MARKDOWN_PROSE_WRAP=always
+YAML_INDENT_STYLE=space
+YAML_INDENT_SIZE=2
+
+# TypeScript Settings
+TS_STRICT_MODE=true
+TS_NO_UNUSED_LOCALS=error
+TS_NO_UNUSED_PARAMETERS=error
+TS_EXPLICIT_FUNCTION_RETURN_TYPE=off
+TS_NO_EXPLICIT_ANY=warn
+TS_PREFER_NULLISH_COALESCING=error
+TS_PREFER_OPTIONAL_CHAIN=error
+
+# Code Quality
+MAX_LINE_LENGTH=220
+NO_CONSOLE=warn
+NO_DEBUGGER=error
+NO_UNUSED_VARS=error
+PREFER_CONST=error
+NO_VAR=error
+EQEQEQ=error
+
+# Next.js/React Specific
+NEXT_CORE_WEB_VITALS=true
+REACT_HOOKS_EXHAUSTIVE_DEPS=warn
+REACT_JSX_NO_TARGET_BLANK=error
+JSX_SINGLE_QUOTE=true
+JSX_BRACKET_SAME_LINE=false
+
+# Editor Behavior
+FORMAT_ON_SAVE=false
+FORMAT_ON_PASTE=false
+ESLINT_AUTO_FIX=true
+WORD_WRAP=off
+INSERT_FINAL_NEWLINE=true
+TRIM_TRAILING_WHITESPACE=true
+
+# File Safety (DO NOT CHANGE - Prevents file deletion)
+SAFE_MODE=true
+PRESERVE_FILES=true
+NO_FILE_DELETION=true
+SRC_ONLY=true
+```
+
+**One config to rule them all!** Edit above → `pnpm run sync` → Done! 🎛️

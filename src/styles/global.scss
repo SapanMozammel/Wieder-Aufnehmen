@@ -1,0 +1,9 @@
+@use 'tailwindcss';
+// Import theme styles
+@use './themes.scss';
+// Import utility styles
+@use './utilities.scss';
+// Import component styles
+@use './components.scss';
+// Import animation styles
+@use './animations.scss';

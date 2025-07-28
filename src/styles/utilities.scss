@@ -1,0 +1,31 @@
+@utility container {
+	margin-inline: auto;
+	max-width: 100%;
+	padding-inline: 1.5rem;
+	@media (width >= theme(--breakpoint-md)) {
+		max-width: 80%;
+		padding-inline: 0;
+	}
+}
+
+@utility container-fluid {
+	margin-inline: auto;
+	max-width: 100%;
+	padding-inline: 1.5rem;
+	@media (width >= theme(--breakpoint-md)) {
+		padding-inline: 2.5rem;
+	}
+}
+
+@utility section-separator {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0.75rem;
+	right: 0.75rem;
+	z-index: -1;
+	@media (width >= theme(--breakpoint-md)) {
+		left: 2.5rem;
+		right: 2.5rem;
+	}
+}

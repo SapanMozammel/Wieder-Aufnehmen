@@ -1,0 +1,29 @@
+# Generated from FORMATTER_CONFIG.md
+# Only format files in src folder
+
+# Ignore everything at root level
+/*
+
+# But include src folder
+!/src/
+
+# Standard ignores
+node_modules/
+vendor/
+build/
+dist/
+*.min.js
+*.min.css
+wp-content/uploads/
+wp-config.php
+*.log
+coverage/
+.cache
+.next
+package-lock.json
+yarn.lock
+composer.lock
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp

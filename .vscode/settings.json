@@ -1,4 +1,77 @@
 {
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+	"workbench.activityBar.orientation": "vertical",
+	"workbench.editor.enablePreview": false,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"editor.detectIndentation": false,
+	"editor.wordWrap": "off",
+	"editor.wordWrapColumn": 220,
+	"editor.rulers": [
+		220
+	],
+	"editor.formatOnSave": false,
+	"editor.formatOnPaste": false,
+	"editor.trimAutoWhitespace": true,
+	"editor.renderWhitespace": "boundary",
+	"editor.minimap.maxColumn": 220,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true,
+		"source.organizeImports": true
+	},
+	"files.eol": "\n",
+	"files.insertFinalNewline": true,
+	"files.trimTrailingWhitespace": true,
+	"files.trimFinalNewlines": true,
+	"files.autoSave": "onFocusChange",
+	"prettier.requireConfig": true,
+	"prettier.configPath": ".formatter/.prettierrc.js",
+	"prettier.useEditorConfig": false,
+	"eslint.enable": true,
+	"eslint.run": "onSave",
+	"eslint.format.enable": true,
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[css]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[scss]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[yaml]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"search.exclude": {
+		"**/node_modules": true,
+		"**/build": true,
+		"**/dist": true,
+		"**/*.min.js": true,
+		"**/vendor": true,
+		"**/wp-content/uploads": true
+	},
+	"files.associations": {
+		"*.jsx": "javascriptreact",
+		"*.tsx": "typescriptreact"
+	},
+	"git.enableSmartCommit": true,
+	"git.confirmSync": false,
+	"emmet.includeLanguages": {
+		"javascript": "javascriptreact",
+		"typescript": "typescriptreact"
+	}
 }

@@ -1,35 +1,90 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
+# Dependencies
 /node_modules
 /.pnp
 .pnp.js
 
-# testing
+# Testing
 /coverage
+*.lcov
+/test-results/
+/playwright-report/
+*.spec.js.snap
+*.test.js.snap
 
-# next.js
+# Next.js
 /.next/
 /out/
 
-# production
+# Production builds
 /build
+/dist/
 
-# misc
+# OS-specific files
 .DS_Store
-*.pem
+Thumbs.db
+desktop.ini
 
-# debug
+# Temporary files
+*.tmp
+*.temp
+*~
+*.bak
+*.orig
+
+# Security-sensitive files
+*.key
+*.pem
+.env
+.env.production
+.env.staging
+.env.development
+.env.test
+.env*.local
+.env*.secret
+
+# Debug and logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+*.log
 
-# local env files
-.env*.local
-
-# vercel
+# Vercel
 .vercel
 
-# typescript
+# TypeScript
 *.tsbuildinfo
 next-env.d.ts
+
+# IDE and Editor configurations
+.cursor/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Cache directories
+.cache/
+.npm/
+.yarn/
+.pnpm/
+.eslintcache
+.stylelintcache
+.turbo/
+
+# SCSS/Sass
+.sass-cache/
+
+# GraphQL codegen (if used)
+/generated/
+*.generated.*
+
+# Storybook (if used)
+/storybook-static/

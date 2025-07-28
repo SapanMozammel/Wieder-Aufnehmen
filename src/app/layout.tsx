@@ -1,8 +1,10 @@
-import '../scss/style.scss';
-import { dmSans, ebGaramond, hankenGrotesk } from './fonts';
+import { dmSans, ebGaramond, hankenGrotesk } from '@/app/fonts';
+import '@/styles/global.scss';
 
-export const metadata = {
-	metadataBase: new URL('http://localhost:3000'),
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+	metadataBase: new URL('http://localhost:8000'),
 	alternates: {
 		canonical: 'https://templately.com',
 		languages: {
@@ -11,8 +13,7 @@ export const metadata = {
 	},
 	title: {
 		template: '%s',
-		default:
-			'Templately - The Best Elementor and Gutenberg Templates for WordPress & Cloud WorkSpace for',
+		default: 'Templately - The Best Elementor and Gutenberg Templates for WordPress & Cloud WorkSpace for',
 	},
 	generator: 'Templately',
 	applicationName: 'Templately',
@@ -36,9 +37,7 @@ export const metadata = {
 	},
 	description: `Get 4,000+ Elementor templates & ready Blocks for Gutenberg to build WordPress website in few clicks. Join Templately for FREE & save ready templates in MyCloud to collaborate with team members on WorkSpace for WordPress.`,
 	openGraph: {
-		images: [
-			'https://assets.templately.com/frontend/templately-banner-200k.jpg',
-		],
+		images: ['https://assets.templately.com/frontend/templately-banner-200k.jpg'],
 		// imageHeight: '1200',
 		type: 'website',
 		siteName: 'Templately',
@@ -78,18 +77,14 @@ export const metadata = {
 	},
 };
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
-		<html lang="en" suppressHydrationWarning>
-			<body
-				suppressHydrationWarning
-				className={`${dmSans.variable} ${ebGaramond.variable} ${hankenGrotesk.variable} font-dm`}>
+		<html lang='en' suppressHydrationWarning>
+			<body suppressHydrationWarning className={`${dmSans.variable} ${ebGaramond.variable} ${hankenGrotesk.variable} font-dm`}>
 				{children}
 			</body>
 		</html>
 	);
-}
+};
+
+export default RootLayout;

@@ -1,6 +1,6 @@
 # Project Architecture
 
-## 1. Folder Structure
+## Folder Structure
 
 ```
 src/
@@ -21,7 +21,6 @@ src/
 │   │   │   └── [slug]/
 │   │   │       └── page.tsx
 │   │   ├── about/
-│   │   ├── support/
 │   │   ├── blog/                       # Public blog view (read-only)
 │   │   │   ├── [slug]/
 │   │   │   └── page.tsx
@@ -105,6 +104,7 @@ src/
 │           └── route.ts
 ├── components/                         # React components
 │   ├── ui/                             # Base UI components (shadcn/ui)
+│   ├── icons/                          # Base Icon components
 │   ├── forms/                          # Form-specific components
 │   │   ├── auth/                       # Authentication forms
 │   │   ├── user/                       # User management forms
@@ -166,49 +166,35 @@ src/
 │       ├── tables/                     # Data table components
 │       └── navigation/                 # Navigation components
 ├── lib/                                # Utilities and configurations
-│   ├── auth/                           # Authentication utilities
-│   │   ├── config.ts                   # Auth configuration
-│   │   ├── providers.ts                # Auth providers (NextAuth, JWT)
-│   │   ├── middleware.ts               # Auth middleware
-│   │   └── utils.ts                    # Auth utility functions
-│   ├── api/                            # API client and utilities
-│   │   ├── client.ts                   # API client configuration
-│   │   ├── endpoints.ts                # API endpoints
-│   │   ├── interceptors.ts             # Request/response interceptors
-│   │   └── types.ts                    # API types
-│   ├── database/                       # Database utilities
-│   │   ├── connection.ts               # Database connection
-│   │   ├── migrations/                 # Database migrations
-│   │   ├── seeds/                      # Database seeds
-│   │   └── utils.ts                    # Database utilities
-│   ├── validations/                    # Zod schemas
+│   ├── validations/                    # Zod validation schemas (consolidated)
 │   │   ├── auth.ts                     # Authentication schemas
 │   │   ├── user.ts                     # User schemas
 │   │   ├── blog.ts                     # Blog schemas
 │   │   ├── portfolio.ts                # Portfolio schemas
+│   │   ├── forms.ts                    # Form validation schemas
 │   │   └── common.ts                   # Common validation schemas
-│   ├── constants/                      # Application constants
+│   ├── constants/                      # Application constants (consolidated)
 │   │   ├── roles.ts                    # User roles and permissions
 │   │   ├── routes.ts                   # Application routes
 │   │   ├── api.ts                      # API constants
-│   │   └── ui.ts                       # UI constants
+│   │   ├── ui.ts                       # UI constants
+│   │   └── index.ts                    # Main constants export
 │   ├── hooks/                          # Custom React hooks
 │   │   ├── useAuth.ts                  # Authentication hooks
 │   │   ├── useApi.ts                   # API hooks
 │   │   ├── useLocalStorage.ts          # Local storage hooks
 │   │   ├── useDebounce.ts              # Debounce hooks
 │   │   └── usePermissions.ts           # Permission hooks
-│   ├── utils/                          # General utilities
+│   ├── utils/                          # General utilities (consolidated)
 │   │   ├── format.ts                   # Formatting utilities
 │   │   ├── validation.ts               # Validation utilities
 │   │   ├── date.ts                     # Date utilities
-│   │   ├── string.ts                   # String utilities
-│   │   └── file.ts                     # File utilities
-│   └── config/                         # Configuration files
-│       ├── database.ts                 # Database configuration
-│       ├── auth.ts                     # Authentication configuration
-│       ├── api.ts                      # API configuration
-│       └── app.ts                      # Application configuration
+│   │   ├── string.ts                   # String utilities (includes generateId)
+│   │   ├── file.ts                     # File utilities
+│   │   ├── async.ts                    # Async utilities (sleep, promises)
+│   │   └── performance.ts              # Performance utilities (debounce, throttle)
+│   ├── utils.ts                        # shadcn/ui utilities (cn function)
+
 ├── types/                              # TypeScript type definitions
 │   ├── api.ts                          # API response/request types
 │   ├── auth.ts                         # Authentication types
@@ -217,24 +203,18 @@ src/
 │   ├── users.ts                        # User-specific types
 │   ├── role.ts                         # Role management types
 │   ├── permission.ts                   # Permission management types
-│   ├── marketing.ts                    # Marketing management types
 │   ├── analytics.ts                    # Analytics types
 │   ├── notifications.ts                # Notification types
-│   ├── audit.ts                        # Audit trail types
 │   ├── database.ts                     # Database model types
 │   ├── forms.ts                        # Form-related types
 │   ├── ui.ts                           # UI component types
 │   └── global.ts                       # Global types and interfaces
 ├── styles/                             # Styling (renamed from scss/)
-│   ├── globals.css                     # Moved from app/globals.css
-│   ├── components.css                  # Component-specific styles
-│   ├── utilities.css                   # Utility classes
-│   ├── themes/                         # Theme configurations
-│   │   ├── light.css
-│   │   ├── dark.css
-│   │   └── variables.css
-│   └── scss/                           # Keep existing SCSS files
-│       └── style.scss                  # Main SCSS file
+│   ├── globals.scss                    # Moved from app/globals.scss
+│   ├── themes.scss                     # Theme configurations
+│   ├── utilities.scss                  # Utility classes
+│   ├── components.scss                 # Component-specific styles
+│   └── animations.scss                 # Animation styles
 ├── providers/                          # React context providers
 │   ├── AuthProvider.tsx                # Authentication context
 │   ├── ThemeProvider.tsx               # Theme context (light/dark mode)
@@ -280,109 +260,7 @@ src/
 │   │   └── uiSelectors.ts              # UI selectors
 │   ├── hooks.ts                        # Typed Redux hooks
 │   └── index.ts                        # Store configuration
-├── graphql/                            # GraphQL related files
-│   ├── queries/                        # GraphQL queries
-│   │   ├── auth.graphql                # Authentication queries
-│   │   ├── user.graphql                # User queries
-│   │   ├── blog.graphql                # Blog queries
-│   │   ├── portfolio.graphql           # Portfolio queries
-│   │   ├── analytics.graphql           # Analytics queries
-│   │   ├── notifications.graphql       # Notification queries
-│   │   └── audit.graphql               # Audit queries
-│   ├── mutations/                      # GraphQL mutations
-│   │   ├── auth.graphql                # Authentication mutations
-│   │   ├── user.graphql                # User mutations
-│   │   ├── blog.graphql                # Blog mutations
-│   │   ├── portfolio.graphql           # Portfolio mutations
-│   │   ├── notifications.graphql       # Notification mutations
-│   │   └── audit.graphql               # Audit mutations
-│   ├── subscriptions/                  # GraphQL subscriptions
-│   │   ├── notifications.graphql       # Real-time notifications
-│   │   ├── analytics.graphql           # Real-time analytics
-│   │   └── audit.graphql               # Real-time audit logs
-│   ├── fragments/                      # GraphQL fragments
-│   │   ├── userFragment.graphql        # User fragments
-│   │   ├── blogFragment.graphql        # Blog fragments
-│   │   ├── portfolioFragment.graphql   # Portfolio fragments
-│   │   └── commonFragment.graphql      # Common fragments
-│   ├── generated/                      # Generated types and hooks
-│   │   ├── graphql.ts                  # Generated types
-│   │   ├── hooks.ts                    # Generated hooks
-│   │   └── operations.ts               # Generated operations
-│   ├── resolvers/                      # GraphQL resolvers (if using code-first)
-│   │   ├── auth.ts                     # Authentication resolvers
-│   │   ├── user.ts                     # User resolvers
-│   │   ├── blog.ts                     # Blog resolvers
-│   │   ├── portfolio.ts                # Portfolio resolvers
-│   │   └── index.ts                    # Combined resolvers
-│   ├── client.ts                       # Apollo Client configuration
-│   ├── schema.graphql                  # GraphQL schema (if using schema-first)
-│   └── codegen.yml                     # GraphQL Code Generator configuration
-├── utils/                              # Global utility functions
-│   ├── format.ts                       # Formatting utilities
-│   ├── validation.ts                   # Validation utilities
-│   ├── date.ts                         # Date utilities
-│   ├── string.ts                       # String utilities
-│   ├── file.ts                         # File utilities
-│   └── constants.ts                    # Global constants
-├── constants/                          # Application constants
-│   ├── roles.ts                        # User roles and permissions
-│   ├── routes.ts                       # Application routes
-│   ├── api.ts                          # API constants
-│   ├── ui.ts                           # UI constants
-│   └── validation.ts                   # Validation constants
-├── validations/                        # Zod validation schemas
-│   ├── auth.ts                         # Authentication schemas
-│   ├── user.ts                         # User schemas
-│   ├── blog.ts                         # Blog schemas
-│   ├── portfolio.ts                    # Portfolio schemas
-│   ├── forms.ts                        # Form validation schemas
-│   └── common.ts                       # Common validation schemas
+├── graphql/                            # GraphQL setup
+│   └── schema.graphql                  # GraphQL schema definition
 └── middleware.ts                       # Next.js middleware
 ```
-
-## 2. Folder Structure Improvements Made
-
-### ✅ Added Missing Core Folders:
-
-- **`types/`** - TypeScript type definitions (api.ts, auth.ts, blog.ts, portfolio.ts, users.ts, role.ts, permission.ts, marketing.ts, analytics.ts, notifications.ts, audit.ts, database.ts, forms.ts, ui.ts, global.ts)
-- **`store/`** - Redux Toolkit setup (slices/, api/, middleware/, selectors/, hooks.ts, index.ts)
-- **`providers/`** - React context providers (AuthProvider.tsx, ThemeProvider.tsx, QueryProvider.tsx, PermissionProvider.tsx, NotificationProvider.tsx, index.tsx)
-- **`hooks/`** - Custom React hooks (useAuth.ts, usePermissions.ts, useLocalStorage.ts, useDebounce.ts, useApi.ts)
-- **`utils/`** - Global utility functions (format.ts, validation.ts, date.ts, string.ts, file.ts, constants.ts)
-- **`constants/`** - Application constants (roles.ts, routes.ts, api.ts, ui.ts, validation.ts)
-- **`validations/`** - Zod validation schemas (auth.ts, user.ts, blog.ts, portfolio.ts, forms.ts, common.ts)
-- **`graphql/`** - GraphQL setup (queries/, mutations/, subscriptions/, fragments/, generated/, resolvers/, client.ts, schema.graphql, codegen.yml)
-
-### 🔄 Reorganized Existing Structure:
-
-- **`styles/`** - Renamed from `scss/` (globals.css moved from app/, added components.css, utilities.css, themes/, kept scss/ folder)
-- **`components/`** - Feature-based organization (ui/, forms/, layout/, features/, common/)
-- **`lib/`** - Detailed sub-organization (auth/, api/, database/, validations/, constants/, hooks/, utils/, config/)
-- **`api/`** - Added missing routes (analytics/, notifications/, audit/, webhooks/)
-
-## 3. Implementation Priority
-
-### Phase 1 (High Priority)
-
-- **Setup GraphQL infrastructure** - Schema, resolvers, Apollo Client
-- **Implement Redux Toolkit** - Store configuration, slices, RTK Query
-- **Reorganize folder structure** - Move types, add GraphQL folder
-- **GraphQL Code Generation** - Setup codegen for type safety
-- **Basic error boundaries** - Add global error handling
-
-### Phase 2 (Medium Priority)
-
-- **RTK Query API integration** - Replace REST calls with GraphQL
-- **Redux state management** - Implement all feature slices
-- **Form validation** - Zod schemas + GraphQL validation
-- **Authentication flow** - JWT or NextAuth with GraphQL
-- **Testing setup** - Jest, RTL, MSW for GraphQL mocking
-
-### Phase 3 (Low Priority)
-
-- **Performance optimizations** - Query optimization, caching strategies
-- **Advanced GraphQL features** - Subscriptions, fragments, directives
-- **Monitoring & analytics** - GraphQL query analysis, error tracking
-- **CI/CD pipeline** - Automated testing, schema validation
-- **Documentation** - GraphQL playground, Storybook integration
