@@ -84,3 +84,16 @@ digest `205d0a55f2f543049c1f353a4d84d6f16a198929a9f2ec9cff7d3f15fef2ae6f`.
 The reviewed installer plan changed only the checker, license notice and lock;
 project context was byte-preserved and a repeated preview was a no-op.
 Historical counts above remain evidence of the earlier 1.0.0 foundation.
+
+## Native-pnpm CI correction — 2026-09-06
+
+The first remote CI run exposed an assumption not exercised by the local pnpm
+installation: the quality runner and development/browser launcher treated every
+`npm_execpath` as a JavaScript file. Native pnpm reports a bare executable name.
+Both callers now share a small launch planner that preserves argument boundaries
+and uses Node only for JavaScript entry points. A failing regression preceded the fix.
+
+With `npm_execpath=pnpm`, the full local gate passed all **16 checks** again:
+**158 unit/API/contract/tooling tests**, **3 MongoDB integration tests** and
+**4 browser/accessibility tests**, plus builds, lint, types and dependency audit.
+The PR tracks remote verification of this correction; no CI checks were weakened.

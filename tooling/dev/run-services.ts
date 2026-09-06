@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseEnv } from 'node:util';
+import { createPnpmCommand } from '../shared/pnpm-command.js';
 
 type ServiceName = 'api' | 'web';
 interface LocalEnvironment {
@@ -130,20 +131,24 @@ export async function runServices(selection = 'all', execution = 'development'):
         },
   );
   const running: { name: ServiceName; child: ChildProcess; closed: boolean }[] = plans.map(
-    ({ name, environment }) => ({
-      name,
-      child: spawn(
-        process.execPath,
-        [manager, '--filter', `aufnehmen-${name}`, 'run', built ? 'start' : 'dev'],
-        {
+    ({ name, environment }) => {
+      const command = createPnpmCommand(manager, [
+        '--filter',
+        `aufnehmen-${name}`,
+        'run',
+        built ? 'start' : 'dev',
+      ]);
+      return {
+        name,
+        child: spawn(command.executable, command.args, {
           cwd: root,
           env: built && name === 'web' ? { ...environment, NODE_ENV: 'production' } : environment,
           stdio: 'inherit',
           detached: process.platform !== 'win32',
-        },
-      ),
-      closed: false,
-    }),
+        }),
+        closed: false,
+      };
+    },
   );
 
   return new Promise((resolveExit) => {

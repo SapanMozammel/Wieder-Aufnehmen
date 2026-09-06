@@ -1,7 +1,7 @@
 # Foundation finalization and Auterix integration
 
 Status: in_progress
-Owned files: tooling/architecture/check-architecture.ts, tooling/architecture/check-architecture.test.ts, .ai/manifest.json, .ai/tasks/foundation-finalization.md, .ai/workflow.lock.json, .ai/core/LICENSE.md, .ai/tools/workflow.mjs, LICENSE, package.json, README.md, docs/, .github/workflows/ci.yml
+Owned files: tooling/architecture/check-architecture.ts, tooling/architecture/check-architecture.test.ts, tooling/dev/, tooling/shared/, tests/run-quality-gates.ts, tests/run-quality-gates.test.ts, .ai/manifest.json, .ai/tasks/foundation-finalization.md, .ai/workflow.lock.json, .ai/core/LICENSE.md, .ai/tools/workflow.mjs, LICENSE, package.json, README.md, docs/, .github/workflows/ci.yml
 
 ## Objective
 
@@ -54,6 +54,28 @@ NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:4000 pnpm check:all` passed all 16 gat
   the record was corrected before the full passing run. No check was disabled.
 - Auterix source: 35/35 conformance tests pass. GitHub PR/remote CI and test-service
   cleanup remain the final integration steps.
+
+## Remote integration
+
+- Implementation commit `b33c4c7b03df66c84056b5e9be3cb076dd9cf964` was pushed;
+  [PR #4](https://github.com/SapanMozammel/Aufnehmen/pull/4) is open against `main`.
+- Local test container/network were stopped; both test volumes and the existing
+  Recto MongoDB service at port 27017 were preserved.
+- The first CI quality job exposed a native-pnpm launch assumption in the gate
+  runner: `npm_execpath=pnpm` was incorrectly passed to Node as a script filename.
+  The sibling development launcher had the same assumption. Both now use a small
+  shared command builder: JavaScript pnpm entry points run through Node; native
+  executables launch directly with argument arrays and no shell.
+- Regression first: the native launch test failed before the fix. Afterward,
+  27 focused tests passed, plus tooling types, formatting and lint. Added 14 tests
+  cover native/JavaScript command shapes, argument boundaries and failure propagation.
+- Full local gates were rerun with the exact CI manager shape:
+  `npm_execpath=pnpm node --import tsx tests/run-quality-gates.ts all`, with the
+  same isolated MongoDB/public API environment above. All 16 gates passed:
+  **158 unit/API/contract/tooling tests**, **3 MongoDB tests**, **4 browser tests**,
+  builds and audit. CI rerun is pending for the launcher correction.
+- HTTPS token workflow permission was insufficient; the existing authenticated
+  SSH key performed the push without changing credentials or account permissions.
 
 ## Handoff
 

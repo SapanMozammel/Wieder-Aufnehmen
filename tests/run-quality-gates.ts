@@ -1,4 +1,5 @@
 import { spawnSync } from 'node:child_process';
+import { createPnpmCommand } from '../tooling/shared/pnpm-command.js';
 
 const mode = process.argv[2];
 if (mode !== 'quick' && mode !== 'all') throw new Error('Quality gate mode must be quick or all.');
@@ -31,7 +32,8 @@ const gates =
     : quick;
 for (const gate of gates) {
   console.log(`Running ${gate}`);
-  const result = spawnSync(process.execPath, [manager, 'run', gate], {
+  const command = createPnpmCommand(manager, ['run', gate]);
+  const result = spawnSync(command.executable, command.args, {
     stdio: 'inherit',
     env: process.env,
   });
