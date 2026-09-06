@@ -1,6 +1,6 @@
 # Foundation finalization and Auterix integration
 
-Status: in_progress
+Status: complete
 Owned files: tooling/architecture/check-architecture.ts, tooling/architecture/check-architecture.test.ts, tooling/dev/, tooling/shared/, tests/run-quality-gates.ts, tests/run-quality-gates.test.ts, .ai/manifest.json, .ai/tasks/foundation-finalization.md, .ai/workflow.lock.json, .ai/core/LICENSE.md, .ai/tools/workflow.mjs, LICENSE, package.json, README.md, docs/, .github/workflows/ci.yml
 
 ## Objective
@@ -53,7 +53,7 @@ NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:4000 pnpm check:all` passed all 16 gat
 - The initial run rejected incomplete headings/ownership in this new task record;
   the record was corrected before the full passing run. No check was disabled.
 - Auterix source: 35/35 conformance tests pass. GitHub PR/remote CI and test-service
-  cleanup remain the final integration steps.
+  cleanup are recorded below.
 
 ## Remote integration
 
@@ -73,13 +73,20 @@ NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:4000 pnpm check:all` passed all 16 gat
   `npm_execpath=pnpm node --import tsx tests/run-quality-gates.ts all`, with the
   same isolated MongoDB/public API environment above. All 16 gates passed:
   **158 unit/API/contract/tooling tests**, **3 MongoDB tests**, **4 browser tests**,
-  builds and audit. CI rerun is pending for the launcher correction.
+  builds and audit.
+- [Corrected CI run](https://github.com/SapanMozammel/Aufnehmen/actions/runs/34041738341)
+  passed both quality/build and real MongoDB/browser/accessibility jobs for commit
+  `7f75476f6f7afeae98a4ed6a6a918c10f7b512ef`. Independent launcher review found no
+  concrete defect and reran 27 focused tests successfully. All final local test
+  resources were stopped again, with volumes retained and Recto MongoDB preserved.
 - HTTPS token workflow permission was insufficient; the existing authenticated
   SSH key performed the push without changing credentials or account permissions.
 
 ## Handoff
 
 Native AI client checks remain a founder task and are not claimed by automated
-adapter checks. Review PRs are not merged or published releases. Next: finish
-reviewed workflow adoption, run all gates, stop only the owned test resources,
-then commit, push and open the review PR.
+adapter checks. [PR #4](https://github.com/SapanMozammel/Aufnehmen/pull/4) is ready
+for founder review, not merged or published. Next: review the PR and separately
+authorize merging or releases. Auterix remains private; Aufnehmen remains a public
+template. Existing dev/architecture branches and the original workflow checkout
+are preserved. Subsequent handoff-only CI results are visible on the same PR.

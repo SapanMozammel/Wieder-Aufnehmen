@@ -96,4 +96,8 @@ and uses Node only for JavaScript entry points. A failing regression preceded th
 With `npm_execpath=pnpm`, the full local gate passed all **16 checks** again:
 **158 unit/API/contract/tooling tests**, **3 MongoDB integration tests** and
 **4 browser/accessibility tests**, plus builds, lint, types and dependency audit.
-The PR tracks remote verification of this correction; no CI checks were weakened.
+The [corrected remote CI run](https://github.com/SapanMozammel/Aufnehmen/actions/runs/34041738341)
+passed both jobs for commit `7f75476f6f7afeae98a4ed6a6a918c10f7b512ef`; no CI checks
+were weakened. The final isolated local test container/network were removed with
+volumes retained, and Recto's original MongoDB remained healthy. The PR is open
+for founder review; no merge, deployment or release was performed.
