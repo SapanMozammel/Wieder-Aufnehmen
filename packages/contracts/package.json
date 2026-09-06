@@ -1,0 +1,28 @@
+{
+  "name": "@aufnehmen/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Browser-safe runtime HTTP contracts for Aufnehmen applications.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --root ../.. packages/contracts/src"
+  },
+  "dependencies": {
+    "zod": "4.4.3"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "projectProfile": ".ai/project.json",
+  "currentTask": ".ai/tasks/foundation-finalization.md",
+  "readOnStart": ["AGENTS.md", ".ai/core/start.md", "docs/architecture.md", "docs/engineering.md"],
+  "workflows": [
+    ".ai/core/workflows/product.md",
+    ".ai/core/workflows/design.md",
+    ".ai/core/workflows/architecture.md",
+    ".ai/core/workflows/implementation.md",
+    ".ai/core/workflows/verification.md",
+    ".ai/core/workflows/security.md",
+    ".ai/core/workflows/migration.md",
+    ".ai/core/workflows/release.md"
+  ]
+}

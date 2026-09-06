@@ -1,0 +1,415 @@
+{
+  "components": {
+    "headers": {
+      "RequestId": {
+        "description": "Opaque server-generated request identifier.",
+        "required": true,
+        "schema": {
+          "description": "Opaque server-generated request identifier.",
+          "maxLength": 128,
+          "minLength": 1,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "type": "string"
+        }
+      }
+    },
+    "schemas": {
+      "ErrorEnvelope": {
+        "additionalProperties": false,
+        "description": "Stable, display-safe JSON error response.",
+        "properties": {
+          "error": {
+            "additionalProperties": false,
+            "properties": {
+              "code": {
+                "enum": [
+                  "VALIDATION_FAILED",
+                  "UNAUTHENTICATED",
+                  "FORBIDDEN",
+                  "NOT_FOUND",
+                  "CONFLICT",
+                  "RATE_LIMITED",
+                  "SERVICE_UNAVAILABLE",
+                  "TIMEOUT",
+                  "INTERNAL_ERROR"
+                ],
+                "type": "string"
+              },
+              "details": {
+                "items": {
+                  "additionalProperties": false,
+                  "description": "Allowlisted validation metadata that never includes a rejected value.",
+                  "properties": {
+                    "path": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "maxLength": 64,
+                            "minLength": 1,
+                            "pattern": "^[A-Za-z][A-Za-z0-9]*$",
+                            "type": "string"
+                          },
+                          {
+                            "maximum": 1000000,
+                            "minimum": 0,
+                            "type": "integer"
+                          }
+                        ]
+                      },
+                      "maxItems": 16,
+                      "type": "array"
+                    },
+                    "reason": {
+                      "enum": [
+                        "REQUIRED",
+                        "INVALID_TYPE",
+                        "INVALID_FORMAT",
+                        "OUT_OF_RANGE",
+                        "UNKNOWN_FIELD"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "reason"
+                  ],
+                  "type": "object"
+                },
+                "maxItems": 16,
+                "type": "array"
+              },
+              "message": {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              },
+              "requestId": {
+                "description": "Opaque server-generated request identifier.",
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "code",
+              "message",
+              "requestId"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "type": "object"
+      },
+      "LivenessResponse": {
+        "additionalProperties": false,
+        "description": "Closed process-liveness response with no dependency information.",
+        "properties": {
+          "status": {
+            "const": "live",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object"
+      },
+      "ReadinessResponse": {
+        "additionalProperties": false,
+        "description": "Closed readiness response returned only when required dependencies are ready.",
+        "properties": {
+          "status": {
+            "const": "ready",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "type": "object"
+      },
+      "SystemStatusResponse": {
+        "description": "Sanitized public API and database availability status.",
+        "oneOf": [
+          {
+            "additionalProperties": false,
+            "properties": {
+              "contractVersion": {
+                "const": "v1",
+                "type": "string"
+              },
+              "database": {
+                "const": "available",
+                "type": "string"
+              },
+              "requestId": {
+                "description": "Opaque server-generated request identifier.",
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              "state": {
+                "const": "available",
+                "type": "string"
+              },
+              "timestamp": {
+                "description": "UTC ISO 8601 timestamp generated by the API server.",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "state",
+              "database",
+              "requestId",
+              "timestamp",
+              "contractVersion"
+            ],
+            "type": "object"
+          },
+          {
+            "additionalProperties": false,
+            "properties": {
+              "contractVersion": {
+                "const": "v1",
+                "type": "string"
+              },
+              "database": {
+                "const": "unavailable",
+                "type": "string"
+              },
+              "requestId": {
+                "description": "Opaque server-generated request identifier.",
+                "maxLength": 128,
+                "minLength": 1,
+                "pattern": "^[A-Za-z0-9_-]+$",
+                "type": "string"
+              },
+              "state": {
+                "const": "degraded",
+                "type": "string"
+              },
+              "timestamp": {
+                "description": "UTC ISO 8601 timestamp generated by the API server.",
+                "format": "date-time",
+                "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d(?::[0-5]\\d(?:\\.\\d+)?)?(?:Z))$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "state",
+              "database",
+              "requestId",
+              "timestamp",
+              "contractVersion"
+            ],
+            "type": "object"
+          }
+        ]
+      }
+    }
+  },
+  "info": {
+    "description": "MENN foundation API contract. Health probes are internal; system status is sanitized for public access.",
+    "title": "Aufnehmen API",
+    "version": "1.0.0"
+  },
+  "jsonSchemaDialect": "https://json-schema.org/draft/2020-12/schema",
+  "openapi": "3.1.0",
+  "paths": {
+    "/health/live": {
+      "get": {
+        "description": "Internal operational probe. Deployment routing must exclude this path from public ingress.",
+        "operationId": "getLiveness",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LivenessResponse"
+                }
+              }
+            },
+            "description": "The API process is serving requests.",
+            "headers": {
+              "X-Request-Id": {
+                "$ref": "#/components/headers/RequestId"
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "The liveness request could not be completed safely.",
+            "headers": {
+              "X-Request-Id": {
+                "$ref": "#/components/headers/RequestId"
+              }
+            }
+          }
+        },
+        "security": [],
+        "summary": "Report process liveness",
+        "tags": [
+          "Internal health"
+        ],
+        "x-aufnehmen-exposure": "internal"
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "description": "Internal operational probe. Deployment routing must exclude this path from public ingress.",
+        "operationId": "getReadiness",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessResponse"
+                }
+              }
+            },
+            "description": "All required dependencies are currently ready.",
+            "headers": {
+              "X-Request-Id": {
+                "$ref": "#/components/headers/RequestId"
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "The readiness request could not be completed safely.",
+            "headers": {
+              "X-Request-Id": {
+                "$ref": "#/components/headers/RequestId"
+              }
+            }
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "A required dependency is unavailable or its check timed out.",
+            "headers": {
+              "X-Request-Id": {
+                "$ref": "#/components/headers/RequestId"
+              }
+            }
+          }
+        },
+        "security": [],
+        "summary": "Report internal service readiness",
+        "tags": [
+          "Internal health"
+        ],
+        "x-aufnehmen-exposure": "internal"
+      }
+    },
+    "/v1/system/status": {
+      "get": {
+        "description": "Unauthenticated public product API containing only bounded, non-sensitive status data.",
+        "operationId": "getSystemStatus",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemStatusResponse"
+                }
+              }
+            },
+            "description": "The status was evaluated as available or degraded.",
+            "headers": {
+              "X-Request-Id": {
+                "$ref": "#/components/headers/RequestId"
+              }
+            }
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "The process-local request limit was exceeded.",
+            "headers": {
+              "X-Request-Id": {
+                "$ref": "#/components/headers/RequestId"
+              }
+            }
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "The status could not be evaluated safely.",
+            "headers": {
+              "X-Request-Id": {
+                "$ref": "#/components/headers/RequestId"
+              }
+            }
+          },
+          "504": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "The bounded status evaluation timed out.",
+            "headers": {
+              "X-Request-Id": {
+                "$ref": "#/components/headers/RequestId"
+              }
+            }
+          }
+        },
+        "security": [],
+        "summary": "Report sanitized public system status",
+        "tags": [
+          "System"
+        ],
+        "x-aufnehmen-exposure": "public"
+      }
+    }
+  },
+  "tags": [
+    {
+      "description": "Operational probes that must not be exposed through public production ingress.",
+      "name": "Internal health"
+    },
+    {
+      "description": "Sanitized public technical status operations.",
+      "name": "System"
+    }
+  ]
+}
