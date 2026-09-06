@@ -8,6 +8,17 @@ parsePublicWebConfig({ NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BAS
 const config: NextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@aufnehmen/contracts'],
+  webpack(config, { dev }) {
+    if (dev) {
+      // Shared NodeNext source uses the .js paths emitted by tsc. Resolve those
+      // imports to TypeScript during development without changing build output.
+      config.resolve.extensionAlias = {
+        ...config.resolve.extensionAlias,
+        '.js': ['.ts', '.tsx', '.js'],
+      };
+    }
+    return config;
+  },
   // Repository-owned AI instructions must not be overwritten by next dev.
   agentRules: false,
   poweredByHeader: false,

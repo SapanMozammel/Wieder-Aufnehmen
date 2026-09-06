@@ -7,7 +7,7 @@
   "main": "./dist/bootstrap/main.js",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "dev": "node --watch --import tsx src/bootstrap/main.ts",
+    "dev": "node --watch --conditions=development --import tsx src/bootstrap/main.ts",
     "start": "node dist/bootstrap/main.js",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run --config vitest.config.ts",

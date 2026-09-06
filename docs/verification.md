@@ -1,7 +1,26 @@
 # Foundation verification
 
-Status: local implementation verified. Current Git integration and review status
-is recorded in [the active task](../.ai/tasks/foundation-finalization.md).
+Status: pre-merge improvements passed local verification. Current evidence
+and review status are recorded in [the active task](../.ai/tasks/premerge-quality.md).
+Earlier sections below are historical results, not passes for this newer revision.
+
+## Pre-merge requirements completion — 2026-09-06
+
+The current local revision passed all **17 quality gates** using the native-pnpm
+launcher shape: **167 unit/API/contract/tooling tests**, **3 real MongoDB tests**,
+**4 browser/accessibility tests**, live API/browser contract refresh, production
+builds and dependency audit (no known vulnerabilities found at check time).
+
+Auterix **1.2.0** is installed with **29 managed files** and source digest
+`05010a2c51570f91cb6e996e3f7abd482a9e41a548f3e9df865b6c55794a8c69`.
+Its **65 source tests** pass. Adoption preserved six inspected project-owned files
+byte-for-byte; standalone checking passes and repeated preview is a no-op.
+
+Regression evidence covers alias boundary enforcement, development-only source
+resolution, actual edited-contract propagation, immutable compiled artifacts,
+fixture link/environment protection and interruption cleanup. The owner authorized
+local commits of the verified fixes; earlier PR CI results do not certify this
+revision, and pushing/merging remain separate actions.
 
 ## Acceptance
 

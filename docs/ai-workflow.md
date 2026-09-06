@@ -25,6 +25,20 @@ open `AGENTS.md` and follow its linked task/standards.
 
 ## Task discipline
 
+Auterix 1.2 validates the current task and linked decisions as well as managed
+file integrity. Start from `.ai/templates/task.md`: declare `Task schema: 1`,
+`Status`, explicit `Owned files`, `Risk`, a registered `Workflow` path, and
+`Dependencies: none` or task paths. Keep Objective, Scope, Acceptance, Evidence
+and Handoff substantive; completion also requires Review and no unchecked
+acceptance items. Active tasks require completed dependencies. Supported states
+are draft, discovery, ready, in_progress, verification, review, complete, blocked
+and cancelled. Preserve inherited history; create a new task for new work.
+
+Profile architecture/design/external-reference arrays point to existing local
+instruction artifacts, not remote URLs. Deferred commands/capabilities require
+an owner, trigger, fallback and nonexpired `expires: YYYY-MM-DD`. Validation is
+structural evidence, not proof that commands ran or acceptance outcomes occurred.
+
 Before implementation, capture outcome, scope, non-goals, acceptance, risks,
 dependencies, owned files, and relevant design/architecture decisions. Record
 verification, review findings, and the next step before handing off. Use realistic
@@ -52,3 +66,10 @@ lock or installed checker manually. Keep the MIT notice in `.ai/core/LICENSE.md`
 The upstream source repository is currently private; maintainers need authorized
 source access to review updates. The installed workflow remains self-contained
 and needs no private checkout to run.
+
+The installed 1.2.0 update was applied through a reviewed plan. It adds strict
+context validation, design decision sequencing, conditional AI-change evaluation,
+and guarded adoption rollback. Updates preserve the selected adapters; all six
+documented candidates remain selected in this template. Other projects can select
+a subset when installing upstream. Root Codex overrides are explicitly checked;
+scoped/global/client instruction behavior still requires the deferred native test.

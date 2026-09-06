@@ -17,10 +17,21 @@ pnpm infra:status
 pnpm dev
 ```
 
-`pnpm dev` builds the shared contracts and supervises web/API processes. Failure
-of either child stops the sibling; Ctrl-C shuts down the owned services. It does
-not kill another project's processes. `pnpm infra:down` stops the project's
-MongoDB container while preserving named volumes.
+`pnpm dev` builds the shared workspaces once and supervises web/API processes.
+Development resolves their public exports to TypeScript source: Node's API
+watcher restarts for imported contract edits, and Next.js refreshes the browser
+bundle. `pnpm dev:api` and `pnpm dev:web` use the same source resolution. No manual
+shared-package rebuild is needed while these commands run. Source/type failures
+remain visible in the relevant development process; use `pnpm typecheck` to check
+strict types because development transpilation does not typecheck.
+
+Next development uses webpack with a development-only extension resolver for
+the shared contracts' NodeNext-style `.js` imports in TypeScript source. The
+pinned Turbopack resolver does not map those imports to `.ts` files.
+
+Failure of either supervised service stops the sibling; Ctrl-C shuts down the
+owned services. It does not kill another project's processes. `pnpm infra:down`
+stops the project's MongoDB container while preserving named volumes.
 
 The Compose project defaults to `aufnehmen`. Use a unique `AUFNEHMEN_COMPOSE_PROJECT`
 and `MONGODB_PORT` for multiple projects. Each command must receive the same
@@ -56,6 +67,15 @@ MONGODB_TEST_URI='mongodb://127.0.0.1:27018/?replicaSet=rs0&directConnection=tru
 The browser harness selects separate API/web ports and builds its matching public
 origin. It runs the built API in test mode against a loopback fixture and Next.js
 in production mode; this is production-artifact testing, not production deployment.
+Build/start commands and this harness resolve compiled `dist` exports; the source
+condition is limited to development. Do not add `--conditions=development` to
+production Node options.
+
+`pnpm test:dev-refresh` starts the actual development command in a disposable
+copy, edits a synthetic contract version, and checks both the running API and an
+open Chromium page. It verifies that compiled contracts remain untouched and
+both service ports close on shutdown. It requires installed dependencies and
+Chromium, uses allocated loopback ports, and does not contact a real database.
 
 Integration tests read `MONGODB_TEST_URI`, never the application's `MONGODB_URI`.
 Use a local disposable replica set. Tests create a unique synthetic database and

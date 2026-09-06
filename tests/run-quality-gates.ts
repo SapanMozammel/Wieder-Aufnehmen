@@ -27,6 +27,7 @@ const gates =
         'build:web',
         'test:integration',
         'test:e2e',
+        'test:dev-refresh',
         'security:dependency-audit',
       ]
     : quick;

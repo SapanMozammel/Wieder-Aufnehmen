@@ -5,6 +5,12 @@ describe('workspace architecture', () => {
   it('permits contracts through their public entry point', () => {
     expect(validateImport('apps/web/src/lib/api.ts', '@aufnehmen/contracts')).toBeUndefined();
   });
+  it('normalizes aliases before enforcing workspace boundaries', () => {
+    expect(
+      validateImport('apps/web/src/lib/api.ts', '@/../../api/src/bootstrap/config'),
+    ).toBeDefined();
+    expect(validateImport('apps/web/src/lib/api.ts', '@/lib/../lib/api')).toBeUndefined();
+  });
   it('permits the runtime-neutral shared clock port from application code', () => {
     expect(
       validateImport(

@@ -23,6 +23,9 @@ The current local candidate is not a published upstream release.
 Auterix's tagline is **One workflow. Any AI coding tool.** The source repository
 was renamed in place. A reviewed 1.1.0 installer update migrates the prior
 `SapanMozammel/claude-workflow` source identity and preserves project context.
+The subsequent reviewed 1.2.0 update adds context validation and workflow
+improvements, with 29 managed files and source digest
+`05010a2c51570f91cb6e996e3f7abd482a9e41a548f3e9df865b6c55794a8c69`.
 The upstream repository remains private; the included validator/guidance have
 no runtime dependency on access to that checkout.
 

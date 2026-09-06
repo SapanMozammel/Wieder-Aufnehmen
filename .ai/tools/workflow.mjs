@@ -1,9 +1,10 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomUUID } from 'node:crypto';
 import * as fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { validateContext } from './context.mjs';
 
-export const VERSION = '1.1.0';
+export const VERSION = '1.2.0';
 const SOURCE = 'SapanMozammel/auterix';
 // Keep historical bundles and locks readable; new releases use the canonical identity.
 const SOURCES = new Set([SOURCE, 'SapanMozammel/claude-workflow']);
@@ -22,8 +23,29 @@ const BRIDGES = new Set([
   '.github/copilot-instructions.md',
   '.agents/rules/workflow.md',
 ]);
+const ADAPTER_ENTRIES = {
+  codex: 'AGENTS.md',
+  claude: 'CLAUDE.md',
+  cursor: '.cursor/rules/workflow.mdc',
+  augment: '.augment/rules/workflow.md',
+  copilot: '.github/copilot-instructions.md',
+  antigravity: '.agents/rules/workflow.md',
+};
+const ALL_ADAPTERS = Object.keys(ADAPTER_ENTRIES).sort();
+const strictVersion = (version) => {
+  const [major, minor] = version.split('.').map(Number);
+  return major > 1 || (major === 1 && minor >= 2);
+};
+function selectedAdapters(value = ALL_ADAPTERS) {
+  if (
+    !Array.isArray(value) ||
+    value.some((id) => !Object.hasOwn(ADAPTER_ENTRIES, id)) ||
+    new Set(value).size !== value.length
+  )
+    fail('Invalid or duplicate adapter selection.');
+  return [...value].sort();
+}
 const REQUIRED_MANAGED = [
-  ...BRIDGES,
   '.ai/adapters.json',
   '.ai/core/start.md',
   '.ai/core/roles.md',
@@ -43,6 +65,20 @@ const REQUIRED_MANAGED = [
     (name) => `.ai/templates/${name}.md`,
   ),
 ];
+const REQUIRED_12 = [
+  '.ai/tools/context.mjs',
+  '.ai/core/workflows/ai-change.md',
+  '.ai/templates/ai-evaluation.md',
+];
+function requiredManaged(version, adapters = ALL_ADAPTERS) {
+  return [
+    ...REQUIRED_MANAGED,
+    ...selectedAdapters(adapters)
+      .map((id) => ADAPTER_ENTRIES[id])
+      .filter((file) => BRIDGES.has(file)),
+    ...(strictVersion(version) ? REQUIRED_12 : []),
+  ];
+}
 export const digest = (value) =>
   createHash('sha256')
     .update(typeof value === 'string' ? value : JSON.stringify(value))
@@ -163,7 +199,9 @@ export function validateBundle(bundle) {
         fail(`Bundle file/ancestor collision: ${file}`);
     }
   }
-  if (![...PROJECT, ...REQUIRED_MANAGED].every((file) => seen.has(file.toLowerCase())))
+  if (
+    ![...PROJECT, ...requiredManaged(bundle.version)].every((file) => seen.has(file.toLowerCase()))
+  )
     fail('Bundle is missing required files.');
   const { sourceDigest, ...payload } = bundle;
   if (sourceDigest !== digest(payload)) fail('Bundle content digest mismatch.');
@@ -187,11 +225,12 @@ export function buildBundle(sourceRoot) {
   }
   walk(path.join(sourceRoot, 'baseline/managed'), '', 'managed');
   walk(path.join(sourceRoot, 'baseline/project'), '', 'project');
-  files.push({
-    path: '.ai/tools/workflow.mjs',
-    ownership: 'managed',
-    content: fs.readFileSync(path.join(sourceRoot, 'lib/workflow.mjs'), 'utf8'),
-  });
+  for (const name of ['workflow', 'context'])
+    files.push({
+      path: `.ai/tools/${name}.mjs`,
+      ownership: 'managed',
+      content: fs.readFileSync(path.join(sourceRoot, `lib/${name}.mjs`), 'utf8'),
+    });
   files.sort((a, b) => a.path.localeCompare(b.path));
   const payload = {
     schemaVersion: 1,
@@ -213,7 +252,8 @@ function loadLock(root) {
     typeof lock.version !== 'string' ||
     !/^\d+\.\d+\.\d+(?:-[\w.-]+)?$/.test(lock.version) ||
     Object.keys(lock).some(
-      (key) => !['schemaVersion', 'source', 'version', 'sourceDigest', 'files'].includes(key),
+      (key) =>
+        !['schemaVersion', 'source', 'version', 'sourceDigest', 'files', 'adapters'].includes(key),
     ) ||
     !plain(lock.files) ||
     !/^[a-f0-9]{64}$/.test(lock.sourceDigest)
@@ -223,7 +263,9 @@ function loadLock(root) {
     if (!allowed(file, 'managed') || !/^[a-f0-9]{64}$/.test(hash))
       fail('Invalid managed entry in workflow lock.');
   }
-  if (!REQUIRED_MANAGED.every((file) => Object.hasOwn(lock.files, file)))
+  if (
+    !requiredManaged(lock.version, lock.adapters).every((file) => Object.hasOwn(lock.files, file))
+  )
     fail('Workflow lock is missing required managed entries.');
   return lock;
 }
@@ -233,13 +275,28 @@ export function inspect(input) {
   const markers = [
     'package.json',
     'pnpm-lock.yaml',
+    'package-lock.json',
+    'yarn.lock',
     'pyproject.toml',
     'Cargo.toml',
     'go.mod',
     'README.md',
     'AGENTS.md',
+    'AGENTS.override.md',
     'CLAUDE.md',
     '.ai/manifest.json',
+    'pnpm-workspace.yaml',
+    'tsconfig.json',
+    'eslint.config.js',
+    'eslint.config.mjs',
+    '.prettierrc',
+    '.prettierrc.json',
+    'prettier.config.js',
+    'biome.json',
+    'ruff.toml',
+    '.ruff.toml',
+    'pytest.ini',
+    'Makefile',
   ];
   const present = markers.filter((file) => {
     try {
@@ -268,27 +325,100 @@ export function inspect(input) {
       throw error;
     }
   });
+  // Read only this bounded, conventional manifest; report script names, never script
+  // bodies (which can contain credentials). Candidates are not trusted commands.
+  let scriptNames = [];
+  const warnings = [];
+  if (present.includes('package.json')) {
+    try {
+      const pkg = parse(read(root, 'package.json'), 'package.json');
+      scriptNames = plain(pkg.scripts)
+        ? Object.keys(pkg.scripts)
+            .filter((name) => /^[a-zA-Z0-9:_-]{1,100}$/.test(name))
+            .sort()
+        : [];
+    } catch {
+      warnings.push('package.json could not be safely inventoried; inspect it manually.');
+    }
+  }
+  const workflowsDirectory = path.join(root, '.github/workflows');
+  let ciFiles = [];
+  try {
+    const parent = fs.lstatSync(path.join(root, '.github'));
+    const directory = fs.lstatSync(workflowsDirectory);
+    if (!parent.isSymbolicLink() && !directory.isSymbolicLink() && directory.isDirectory())
+      ciFiles = fs
+        .readdirSync(workflowsDirectory, { withFileTypes: true })
+        .filter((entry) => entry.isFile() && /^[a-zA-Z0-9_.-]+\.ya?ml$/.test(entry.name))
+        .map((entry) => `.github/workflows/${entry.name}`)
+        .sort();
+  } catch (error) {
+    if (error.code !== 'ENOENT') warnings.push('CI inventory unavailable; inspect manually.');
+  }
   return {
     root,
     markers: present,
     legacyGuidance,
+    scriptNames,
+    ciFiles,
+    warnings,
     installed: read(root, LOCK) !== null,
     notice:
-      'File names only; no scripts, credentials, or environment files read. Existing rules and legacy hooks need human conflict review; adoption does not disable them.',
+      'Known file names and bounded package.json script names only; no scripts executed or environment files read. Script bodies are omitted. Existing rules, scoped overrides and legacy hooks need human conflict review; adoption does not disable them.',
   };
 }
 
-export function makePlan(input, bundle, mode = 'install') {
+function installationFiles(bundle, adapters) {
+  const entries = new Set(adapters.map((id) => ADAPTER_ENTRIES[id]));
+  return bundle.files
+    .filter((file) => !BRIDGES.has(file.path) || entries.has(file.path))
+    .map((file) => {
+      if (file.path !== '.ai/adapters.json' || !strictVersion(bundle.version)) return file;
+      const registry = parse(file.content, file.path);
+      if (!Array.isArray(registry.tools)) fail('Invalid adapter registry.');
+      return {
+        ...file,
+        content: json({
+          ...registry,
+          tools: registry.tools.filter(
+            (tool) => tool.id === 'generic' || adapters.includes(tool.id),
+          ),
+        }),
+      };
+    });
+}
+
+function discovery(root, adapters) {
+  if (!adapters.includes('codex')) return [];
+  const override = read(root, 'AGENTS.override.md');
+  return adapters.includes('codex') && override?.trim()
+    ? [
+        {
+          path: 'AGENTS.override.md',
+          hash: digest(override),
+          blocked: !override.includes('.ai/manifest.json'),
+          message:
+            'AGENTS.override.md takes precedence over AGENTS.md in Codex. Preserve its policy and explicitly link .ai/manifest.json after review; a link is not runtime verification.',
+        },
+      ]
+    : [];
+}
+
+export function makePlan(input, bundle, mode = 'install', options = {}) {
   const root = rootPath(input);
   validateBundle(bundle);
   if (!['install', 'update'].includes(mode)) fail('Invalid plan mode.');
   const lock = loadLock(root);
+  const adapters = selectedAdapters(options.adapters ?? lock?.adapters);
+  if (!strictVersion(bundle.version) && JSON.stringify(adapters) !== JSON.stringify(ALL_ADAPTERS))
+    fail('Adapter selection requires a 1.2 or newer bundle.');
+  const files = installationFiles(bundle, adapters);
   if (mode === 'update' && !lock) fail('No managed installation; create an install plan first.');
   if (mode === 'install' && lock) fail('Already installed; use update-plan.');
   if (read(root, GUARD) !== null)
     fail('An adoption writer/recovery journal exists; inspect it before proceeding.');
   const actions = [];
-  for (const file of bundle.files) {
+  for (const file of files) {
     const content = read(root, file.path);
     const before = content === null ? null : digest(content);
     const after = digest(file.content);
@@ -302,7 +432,7 @@ export function makePlan(input, bundle, mode = 'install') {
   }
   if (lock) {
     for (const file of Object.keys(lock.files)) {
-      if (!bundle.files.some((item) => item.path === file))
+      if (!files.some((item) => item.path === file))
         actions.push({
           path: file,
           ownership: 'managed',
@@ -320,6 +450,8 @@ export function makePlan(input, bundle, mode = 'install') {
     root,
     rootIdentity: `${stat.dev}:${stat.ino}`,
     sourceDigest: bundle.sourceDigest,
+    adapters,
+    discovery: discovery(root, adapters),
     lockBefore: read(root, LOCK) === null ? null : digest(read(root, LOCK)),
     actions,
   };
@@ -349,18 +481,73 @@ function writeFile(root, file, content, create = false) {
   }
 }
 
+// Same-directory staging means readers see complete old or new file contents.
+// The expected value is rechecked before replacement; never restore over user edits.
+function atomicWrite(root, file, content, before) {
+  const target = safePath(root, file);
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  const temporary = `${file}.auterix-${randomUUID()}.tmp`;
+  const tempPath = safePath(root, temporary);
+  const mode = before === null ? 0o644 : fs.statSync(target).mode & 0o777;
+  try {
+    const descriptor = fs.openSync(tempPath, 'wx', mode);
+    try {
+      fs.writeFileSync(descriptor, content, 'utf8');
+      fs.fsyncSync(descriptor);
+    } finally {
+      fs.closeSync(descriptor);
+    }
+    if (read(root, file) !== before) fail(`Concurrent change: ${file}`);
+    if (before === null) {
+      fs.linkSync(tempPath, safePath(root, file));
+      fs.unlinkSync(tempPath);
+    } else fs.renameSync(tempPath, safePath(root, file));
+  } finally {
+    if (fs.existsSync(tempPath)) fs.unlinkSync(tempPath);
+  }
+}
+
 export function applyPlan(input, bundle, plan) {
   const root = rootPath(input);
   if (!plain(plan) || plan.root !== root || !['install', 'update'].includes(plan.mode))
     fail('Plan root or mode mismatch.');
-  const expected = makePlan(root, bundle, plan.mode);
+  const expected = makePlan(root, bundle, plan.mode, { adapters: plan.adapters });
   if (JSON.stringify(plan) !== JSON.stringify(expected))
     fail('Plan changed or project drifted; create and review a new plan.');
   if (plan.actions.some((action) => action.action === 'conflict'))
     fail('Plan has conflicts; no files changed.');
+  if (plan.discovery.some((item) => item.blocked))
+    fail(plan.discovery.find((item) => item.blocked).message);
+  const selected = installationFiles(bundle, plan.adapters);
   const writes = plan.actions.filter(
     (action) => action.action === 'create' || action.action === 'update',
   );
+  const lock = {
+    schemaVersion: 1,
+    version: bundle.version,
+    source: bundle.source,
+    sourceDigest: bundle.sourceDigest,
+    ...(strictVersion(bundle.version) ? { adapters: plan.adapters } : {}),
+    files: Object.fromEntries(
+      selected
+        .filter((file) => file.ownership === 'managed')
+        .map((file) => [file.path, digest(file.content)]),
+    ),
+  };
+  const overlay = new Map(
+    writes.map((action) => [
+      action.path,
+      selected.find((file) => file.path === action.path).content,
+    ]),
+  );
+  // Validate data and links with the trusted source checker, not bundled code or consumer scripts.
+  const observed = new Map();
+  validateState(root, lock, (file) => {
+    if (overlay.has(file)) return overlay.get(file);
+    const content = read(root, file);
+    observed.set(file, content);
+    return content;
+  });
   const journal = {
     schemaVersion: 1,
     state: 'writing',
@@ -371,37 +558,54 @@ export function applyPlan(input, bundle, plan) {
       ...writes.map((item) => [item.path, read(root, item.path)]),
       [LOCK, read(root, LOCK)],
     ]),
+    after: Object.fromEntries(
+      [...overlay]
+        .map(([file, content]) => [file, digest(content)])
+        .concat([[LOCK, digest(json(lock))]]),
+    ),
   };
   writeFile(root, GUARD, json(journal), true);
+  const attempted = [];
   try {
     for (const action of writes) {
       const before = read(root, action.path);
       if ((before === null ? null : digest(before)) !== action.before)
         fail(`Concurrent change: ${action.path}; recovery journal retained.`);
-      writeFile(
-        root,
-        action.path,
-        bundle.files.find((file) => file.path === action.path).content,
-        action.action === 'create',
-      );
+      attempted.push(action.path);
+      atomicWrite(root, action.path, overlay.get(action.path), before);
     }
-    const files = Object.fromEntries(
-      bundle.files
-        .filter((file) => file.ownership === 'managed')
-        .map((file) => [file.path, digest(file.content)]),
-    );
-    const lock = {
-      schemaVersion: 1,
-      version: bundle.version,
-      source: bundle.source,
-      sourceDigest: bundle.sourceDigest,
-      files,
-    };
-    writeFile(root, LOCK, json(lock), plan.lockBefore === null);
+    attempted.push(LOCK);
+    atomicWrite(root, LOCK, json(lock), journal.previous[LOCK]);
+    validateState(root, lock, (file) => read(root, file));
+    for (const [file, content] of observed)
+      if (read(root, file) !== content) fail(`Concurrent context change: ${file}`);
+    if (JSON.stringify(discovery(root, plan.adapters)) !== JSON.stringify(plan.discovery))
+      fail('AGENTS.override.md changed during adoption; create and review a new plan.');
     fs.unlinkSync(safePath(root, GUARD));
     return { applied: writes.length, version: bundle.version, sourceDigest: bundle.sourceDigest };
   } catch (error) {
-    fail(`${error.message} Recovery journal retained at ${GUARD}.`);
+    const conflicts = [];
+    for (const file of attempted.reverse()) {
+      try {
+        const current = read(root, file);
+        const before = journal.previous[file];
+        if (current === before) continue;
+        if (current === null || digest(current) !== journal.after[file]) {
+          conflicts.push(file);
+          continue;
+        }
+        if (before === null) fs.unlinkSync(safePath(root, file));
+        else atomicWrite(root, file, before, current);
+      } catch {
+        conflicts.push(file);
+      }
+    }
+    if (conflicts.length)
+      fail(
+        `${error.message} Recovery journal retained at ${GUARD}; preserve concurrent edits and review: ${conflicts.join(', ')}.`,
+      );
+    fs.unlinkSync(safePath(root, GUARD));
+    fail(`${error.message} Adoption rolled back; previous files restored.`);
   }
 }
 
@@ -414,14 +618,26 @@ export function check(input) {
   const lock = loadLock(root);
   if (!lock) fail('Workflow lock is missing.');
   if (read(root, GUARD) !== null) fail('Unfinished adoption; inspect workflow.writer.json.');
+  if (discovery(root, selectedAdapters(lock.adapters)).some((item) => item.blocked))
+    fail(
+      'AGENTS.override.md shadows canonical discovery; reconcile its policy and link .ai/manifest.json.',
+    );
+  return validateState(root, lock, (file) => read(root, file));
+}
+
+function validateState(root, lock, readFile) {
   const problems = [];
   for (const [file, hash] of Object.entries(lock.files)) {
-    const content = read(root, file);
+    const content = readFile(file);
     if (content === null || digest(content) !== hash) problems.push(`Managed file drift: ${file}`);
   }
   if (problems.length) fail(problems.join('\n'));
-  const manifest = parse(read(root, '.ai/manifest.json') ?? '', '.ai/manifest.json');
-  const project = parse(read(root, '.ai/project.json') ?? '', '.ai/project.json');
+  if (strictVersion(lock.version)) {
+    const context = validateContext({ readFile });
+    if (!context.ok) fail(context.errors.join('\n'));
+  }
+  const manifest = parse(readFile('.ai/manifest.json') ?? '', '.ai/manifest.json');
+  const project = parse(readFile('.ai/project.json') ?? '', '.ai/project.json');
   if (
     !plain(manifest) ||
     manifest.schemaVersion !== 1 ||
@@ -437,10 +653,14 @@ export function check(input) {
       !/\.(md|json)$/.test(file) ||
       file
         .split('/')
-        .some((part) => part === '.git' || part === 'node_modules' || part.startsWith('.env'))
+        .some(
+          (part) =>
+            ['.git', 'node_modules'].includes(part.toLowerCase()) ||
+            part.toLowerCase().startsWith('.env'),
+        )
     )
       fail(`Manifest target must be a project instruction artifact: ${file}`);
-    if (read(root, file) === null) fail(`Missing manifest target: ${file}`);
+    if (readFile(file) === null) fail(`Missing manifest target: ${file}`);
   }
   if (
     !plain(project) ||
@@ -452,7 +672,7 @@ export function check(input) {
   requireText(project.name, 'project name');
   requireText(project.stack, 'project stack');
   for (const boundary of project.protectedBoundaries) requireText(boundary, 'protected boundary');
-  if (!read(root, 'AGENTS.md')?.includes('.ai/manifest.json'))
+  if (!readFile('AGENTS.md')?.includes('.ai/manifest.json'))
     fail('AGENTS.md must link to the project manifest.');
   const ids = new Set();
   for (const command of project.commands) {
@@ -471,13 +691,17 @@ export function check(input) {
     }
     ids.add(command.id);
   }
-  const task = read(root, manifest.currentTask);
+  const task = readFile(manifest.currentTask);
   for (const heading of ['## Objective', '## Scope', '## Acceptance', '## Evidence', '## Handoff'])
     if (!task.includes(heading)) fail(`Current task missing ${heading}.`);
-  if (!/^Status: (ready|in_progress|blocked|complete)$/m.test(task))
+  if (
+    !/^Status: (draft|discovery|ready|in_progress|verification|review|complete|blocked|cancelled)$/m.test(
+      task,
+    )
+  )
     fail('Current task requires an explicit supported Status.');
   if (!/^Owned files:/m.test(task)) fail('Current task requires Owned files.');
-  const adapters = parse(read(root, '.ai/adapters.json') ?? '', '.ai/adapters.json');
+  const adapters = parse(readFile('.ai/adapters.json') ?? '', '.ai/adapters.json');
   if (!plain(adapters) || adapters.schemaVersion !== 1 || !Array.isArray(adapters.tools))
     fail('Invalid adapter registry.');
   for (const adapter of adapters.tools) {
@@ -487,7 +711,18 @@ export function check(input) {
       !['documented', 'manual'].includes(adapter.discoveryStatus)
     )
       fail('Adapter runtime claims require a separately reviewed release/evidence model.');
-    if (read(root, adapter.entry) === null) fail(`Missing adapter entry: ${adapter.entry}`);
+    if (
+      (!Object.hasOwn(ADAPTER_ENTRIES, adapter.id) && adapter.id !== 'generic') ||
+      adapter.entry !== (ADAPTER_ENTRIES[adapter.id] ?? 'AGENTS.md')
+    )
+      fail('Adapter discovery entry does not match its tool.');
+    relative(adapter.entry);
+    if (readFile(adapter.entry) === null) fail(`Missing adapter entry: ${adapter.entry}`);
+  }
+  if (strictVersion(lock.version)) {
+    const expected = [...selectedAdapters(lock.adapters), 'generic'].sort();
+    if (JSON.stringify(adapters.tools.map((tool) => tool.id).sort()) !== JSON.stringify(expected))
+      fail('Adapter registry does not match the locked selection.');
   }
   return {
     ok: true,

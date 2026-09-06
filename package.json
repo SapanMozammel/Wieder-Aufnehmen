@@ -23,6 +23,7 @@
     "typecheck:tooling": "tsc --noEmit -p tooling/tsconfig.json",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:dev-refresh": "node --import tsx tests/dev-contract-refresh.ts",
     "test:integration": "pnpm --filter aufnehmen-api run test:integration",
     "test:e2e": "playwright test",
     "test:a11y": "playwright test --grep @accessibility",

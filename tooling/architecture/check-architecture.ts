@@ -35,7 +35,7 @@ export function validateImport(file: string, specifier: string): string | undefi
   const target = specifier.startsWith('.')
     ? normalized(relative('/', resolve('/', file, '..', specifier)))
     : specifier.startsWith('@/')
-      ? `apps/web/src/${specifier.slice(2)}`
+      ? normalized(relative('/', resolve('/apps/web/src', specifier.slice(2))))
       : specifier;
   const nodeOnly = specifier.startsWith('node:') || nodeModules.has(specifier);
   const serverSdk = /^(express|mongodb|helmet)(\/|$)/u.test(specifier);

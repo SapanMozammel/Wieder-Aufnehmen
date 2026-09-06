@@ -4,7 +4,9 @@ This is a project-neutral engineering workflow. The project profile owns languag
 stack, formatting, architecture, commands, capabilities and product decisions.
 This workflow does not select a package manager, AI model, paid tool or provider.
 
-1. Read the manifest, project profile, current task and nearest instructions.
+1. If `.ai/workflow.writer.json` exists, stop implementation and resolve the
+   interrupted adoption with the owner; do not use partially updated guidance.
+   Otherwise read the manifest, project profile, current task and nearest instructions.
 2. Identify the requested outcome, authorized actions, owned files and acceptance.
 3. Inspect the relevant code, tests and accepted decisions. Load the one relevant
    workflow and role; follow additional links only when needed.

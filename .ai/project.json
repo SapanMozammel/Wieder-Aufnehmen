@@ -34,6 +34,12 @@
       "status": "available"
     },
     { "id": "test", "command": "pnpm test", "mode": "local-write", "status": "available" },
+    {
+      "id": "dev-refresh",
+      "command": "pnpm test:dev-refresh",
+      "mode": "local-write",
+      "status": "available"
+    },
     { "id": "build", "command": "pnpm build", "mode": "local-write", "status": "available" },
     {
       "id": "build-api",

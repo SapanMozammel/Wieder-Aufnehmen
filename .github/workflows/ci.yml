@@ -80,6 +80,8 @@ jobs:
         run: pnpm test:integration
       - name: Run real browser and accessibility checks
         run: pnpm test:e2e
+      - name: Verify live shared-contract refresh
+        run: pnpm test:dev-refresh
       - name: Stop owned MongoDB service
         if: always()
         run: pnpm infra:down

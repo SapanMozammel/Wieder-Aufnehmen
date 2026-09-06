@@ -9,7 +9,7 @@
       "discoveryStatus": "documented",
       "runtimeStatus": "not_verified",
       "source": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
-      "notes": "Root instructions; inspect nearer AGENTS.md files for scoped tasks."
+      "notes": "AGENTS.override.md takes precedence over AGENTS.md in each directory. Reconcile root overrides and inspect nearer scoped files; global/client settings still require runtime verification."
     },
     {
       "id": "claude",
