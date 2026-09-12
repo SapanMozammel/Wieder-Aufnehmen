@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-09-06",
+  "policy": "Discovery adapters only. Every entry is statically checked; no client-runtime pass is claimed.",
+  "tools": [
+    {
+      "id": "codex",
+      "entry": "AGENTS.md",
+      "discoveryStatus": "documented",
+      "runtimeStatus": "not_verified",
+      "source": "https://learn.chatgpt.com/docs/agent-configuration/agents-md",
+      "notes": "AGENTS.override.md takes precedence over AGENTS.md in each directory. Reconcile root overrides and inspect nearer scoped files; global/client settings still require runtime verification."
+    },
+    {
+      "id": "claude",
+      "entry": "CLAUDE.md",
+      "discoveryStatus": "documented",
+      "runtimeStatus": "not_verified",
+      "source": "https://code.claude.com/docs/en/memory",
+      "notes": "Repository memory entry; no permission hooks or old commands installed."
+    },
+    {
+      "id": "cursor",
+      "entry": ".cursor/rules/workflow.mdc",
+      "discoveryStatus": "documented",
+      "runtimeStatus": "not_verified",
+      "source": "https://cursor.com/docs/rules",
+      "notes": "Always-applied project discovery rule."
+    },
+    {
+      "id": "augment",
+      "entry": ".augment/rules/workflow.md",
+      "discoveryStatus": "documented",
+      "runtimeStatus": "not_verified",
+      "source": "https://docs.augmentcode.com/cli/rules",
+      "notes": "always_apply workspace rule; root AGENTS.md and CLAUDE.md are also recognized."
+    },
+    {
+      "id": "copilot",
+      "entry": ".github/copilot-instructions.md",
+      "discoveryStatus": "documented",
+      "runtimeStatus": "not_verified",
+      "source": "https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions",
+      "notes": "Repository instructions; availability depends on client and whether instructions are enabled."
+    },
+    {
+      "id": "antigravity",
+      "entry": ".agents/rules/workflow.md",
+      "discoveryStatus": "documented",
+      "runtimeStatus": "not_verified",
+      "source": "https://antigravity.google/docs/rules-workflows",
+      "notes": "Current plural .agents/rules path. Confirm Always On activation in the Rules panel; otherwise attach manually. Legacy singular path is not duplicated."
+    },
+    {
+      "id": "generic",
+      "entry": "AGENTS.md",
+      "discoveryStatus": "manual",
+      "runtimeStatus": "not_verified",
+      "source": null,
+      "notes": "For any other client with repository access, explicitly attach AGENTS.md, manifest, profile and current task. No automatic-discovery claim."
+    }
+  ]
+}

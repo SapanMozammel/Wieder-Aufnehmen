@@ -1,0 +1,32 @@
+name: ${AUFNEHMEN_COMPOSE_PROJECT:-aufnehmen}
+
+services:
+  mongodb:
+    image: mongo:8.0.26@sha256:3ce3de7f40e914034b03b7dec654005ab54f7dc8306937e44ec6760d9e9409a1
+    command:
+      - --replSet
+      - rs0
+      - --bind_ip_all
+      - --port
+      - '27017'
+    ports:
+      - '127.0.0.1:${MONGODB_PORT:-27018}:27017'
+    volumes:
+      - mongodb-data:/data/db
+      - mongodb-config:/data/configdb
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - >-
+          mongosh mongodb://127.0.0.1:27017/?directConnection=true --quiet
+          --eval "quit(db.hello().isWritablePrimary === true ? 0 : 1)"
+      interval: 2s
+      timeout: 2s
+      retries: 20
+      start_period: 5s
+    stop_grace_period: 30s
+    restart: unless-stopped
+
+volumes:
+  mongodb-data:
+  mongodb-config:

@@ -1,0 +1,136 @@
+{
+  "schemaVersion": 1,
+  "name": "Aufnehmen",
+  "stack": "Strict TypeScript MENN modular monolith: MongoDB, Express, Next.js and Node.js; Node 24.20.0, pnpm 11.25.0.",
+  "commands": [
+    {
+      "id": "workflow",
+      "command": "pnpm tooling:check",
+      "mode": "read-only",
+      "status": "available"
+    },
+    { "id": "config", "command": "pnpm config:check", "mode": "read-only", "status": "available" },
+    { "id": "setup", "command": "pnpm setup:check", "mode": "read-only", "status": "available" },
+    { "id": "docs", "command": "pnpm docs:check", "mode": "read-only", "status": "available" },
+    {
+      "id": "architecture",
+      "command": "pnpm arch:check",
+      "mode": "read-only",
+      "status": "available"
+    },
+    {
+      "id": "format-check",
+      "command": "pnpm format:check",
+      "mode": "read-only",
+      "status": "available"
+    },
+    { "id": "format", "command": "pnpm format", "mode": "local-write", "status": "available" },
+    { "id": "lint", "command": "pnpm lint", "mode": "read-only", "status": "available" },
+    { "id": "lint-fix", "command": "pnpm lint:fix", "mode": "local-write", "status": "available" },
+    {
+      "id": "typecheck",
+      "command": "pnpm typecheck",
+      "mode": "local-write",
+      "status": "available"
+    },
+    { "id": "test", "command": "pnpm test", "mode": "local-write", "status": "available" },
+    {
+      "id": "dev-refresh",
+      "command": "pnpm test:dev-refresh",
+      "mode": "local-write",
+      "status": "available"
+    },
+    { "id": "build", "command": "pnpm build", "mode": "local-write", "status": "available" },
+    {
+      "id": "build-api",
+      "command": "pnpm build:api",
+      "mode": "local-write",
+      "status": "available"
+    },
+    {
+      "id": "build-web",
+      "command": "pnpm build:web",
+      "mode": "local-write",
+      "status": "available"
+    },
+    { "id": "dev", "command": "pnpm dev", "mode": "local-write", "status": "available" },
+    { "id": "dev-api", "command": "pnpm dev:api", "mode": "local-write", "status": "available" },
+    { "id": "dev-web", "command": "pnpm dev:web", "mode": "local-write", "status": "available" },
+    { "id": "infra-up", "command": "pnpm infra:up", "mode": "local-write", "status": "available" },
+    {
+      "id": "infra-status",
+      "command": "pnpm infra:status",
+      "mode": "read-only",
+      "status": "available"
+    },
+    {
+      "id": "infra-down",
+      "command": "pnpm infra:down",
+      "mode": "local-write",
+      "status": "available"
+    },
+    {
+      "id": "integration",
+      "command": "pnpm test:integration",
+      "mode": "local-write",
+      "status": "available"
+    },
+    { "id": "browser", "command": "pnpm test:e2e", "mode": "local-write", "status": "available" },
+    {
+      "id": "accessibility",
+      "command": "pnpm test:a11y",
+      "mode": "local-write",
+      "status": "available"
+    },
+    {
+      "id": "openapi-check",
+      "command": "pnpm api:openapi:check",
+      "mode": "local-write",
+      "status": "available"
+    },
+    {
+      "id": "openapi-generate",
+      "command": "pnpm api:openapi",
+      "mode": "local-write",
+      "status": "available"
+    },
+    {
+      "id": "secrets",
+      "command": "pnpm security:secrets",
+      "mode": "read-only",
+      "status": "available"
+    },
+    {
+      "id": "dependency-policy",
+      "command": "pnpm security:dependency-policy",
+      "mode": "read-only",
+      "status": "available"
+    },
+    {
+      "id": "dependency-audit",
+      "command": "pnpm security:dependency-audit",
+      "mode": "read-only",
+      "status": "available"
+    },
+    {
+      "id": "dependencies",
+      "command": "pnpm security:dependencies",
+      "mode": "read-only",
+      "status": "available"
+    },
+    { "id": "quick", "command": "pnpm check:quick", "mode": "local-write", "status": "available" },
+    { "id": "all", "command": "pnpm check:all", "mode": "local-write", "status": "available" }
+  ],
+  "protectedBoundaries": [
+    "Web reaches Express through HTTP and shared runtime-validated contracts, never API or MongoDB internals.",
+    "Domain/application policy depends on ports, never frameworks, database drivers or provider SDKs.",
+    "MongoDB readiness, bounded lifecycle and marker-owned test cleanup remain protected by regression tests.",
+    "Public build-time configuration is validated and contains no secrets; production configuration fails closed.",
+    "Upstream-managed workflow files remain checksum-identical; project context and task history remain consumer-owned.",
+    "No product-specific accounts, billing, AI provider, resume or publication behavior is implied by the starter."
+  ],
+  "architectureDocuments": ["docs/architecture.md", "docs/engineering.md"],
+  "designDocuments": ["docs/customization.md"],
+  "externalReferences": ["docs/provenance.md", ".ai/adapters.json"],
+  "notes": "Inspect root package.json for subcommands. Available means implemented, not that every environment prerequisite exists. Builds require public API config; integration/browser require disposable MongoDB and Chromium; dependency audit requires registry access. Read-only commands do not change project source or external state; tests/builds may create ignored artifacts. No command authorizes external publication."
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@aufnehmen/testing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Purpose-earned synthetic fixtures shared by Aufnehmen application tests.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --root ../.. packages/testing/src"
+  },
+  "dependencies": {
+    "@aufnehmen/contracts": "workspace:*"
+  }
+}

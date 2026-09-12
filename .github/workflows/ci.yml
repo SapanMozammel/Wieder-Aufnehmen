@@ -1,0 +1,87 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  NEXT_PUBLIC_API_BASE_URL: http://127.0.0.1:4000
+
+jobs:
+  quality:
+    name: Workflow, architecture, tests, and builds
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned Node and pnpm
+        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
+        with:
+          version: 11.25.0
+          runtime: node@24.20.0
+          cache: true
+          require-lockfile: true
+      - name: Check setup
+        run: pnpm setup:check
+      - name: Check workflow, source, boundaries, and unit tests
+        run: pnpm check:quick
+      - name: Audit dependency advisories
+        run: pnpm security:dependency-audit
+      - name: Build API
+        run: pnpm build:api
+      - name: Build web
+        run: pnpm build:web
+      - name: Check generated drift
+        run: git diff --exit-code
+
+  integration:
+    name: Real MongoDB, browser, and accessibility
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      AUFNEHMEN_COMPOSE_PROJECT: aufnehmen-ci
+      MONGODB_PORT: '27028'
+      MONGODB_TEST_URI: mongodb://127.0.0.1:27028/?replicaSet=rs0&directConnection=true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install pinned Node and pnpm
+        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
+        with:
+          version: 11.25.0
+          runtime: node@24.20.0
+          cache: true
+          require-lockfile: true
+      - name: Install Chromium and OS dependencies
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Start isolated MongoDB replica set
+        run: pnpm infra:up
+      - name: Verify MongoDB readiness
+        run: pnpm infra:status
+      - name: Run isolated database integration tests
+        run: pnpm test:integration
+      - name: Run real browser and accessibility checks
+        run: pnpm test:e2e
+      - name: Verify live shared-contract refresh
+        run: pnpm test:dev-refresh
+      - name: Stop owned MongoDB service
+        if: always()
+        run: pnpm infra:down

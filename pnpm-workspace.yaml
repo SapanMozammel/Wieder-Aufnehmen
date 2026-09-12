@@ -1,0 +1,7 @@
+packages:
+  - 'apps/*'
+  - 'packages/*'
+
+# Required by tsx and Vitest. Other install scripts require explicit review.
+allowBuilds:
+  esbuild: true

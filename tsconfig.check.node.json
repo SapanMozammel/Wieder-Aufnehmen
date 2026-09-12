@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["ES2022", "DOM"],
+    "noEmit": true,
+    "rootDir": ".",
+    "types": ["node", "vitest/globals"],
+    "paths": {
+      "@aufnehmen/contracts": ["packages/contracts/src/index.ts"],
+      "@aufnehmen/testing": ["packages/testing/src/index.ts"]
+    }
+  },
+  "include": ["apps/api/**/*.ts", "packages/*/src/**/*.ts"],
+  "exclude": ["**/node_modules", "**/dist"]
+}

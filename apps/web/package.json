@@ -1,0 +1,24 @@
+{
+  "name": "aufnehmen-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Next.js application for the Aufnehmen MENN foundation",
+  "scripts": {
+    "dev": "next dev --webpack --hostname 127.0.0.1",
+    "build": "next build --webpack",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@aufnehmen/contracts": "workspace:*",
+    "next": "16.3.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@aufnehmen/testing": "workspace:*",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4"
+  }
+}

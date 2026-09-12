@@ -1,0 +1,29 @@
+{
+  "name": "aufnehmen-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Aufnehmen's private Express API composition root.",
+  "type": "module",
+  "main": "./dist/bootstrap/main.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "node --watch --conditions=development --import tsx src/bootstrap/main.ts",
+    "start": "node dist/bootstrap/main.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --config vitest.config.ts",
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "test:watch": "vitest --config vitest.config.ts"
+  },
+  "dependencies": {
+    "@aufnehmen/contracts": "workspace:*",
+    "express": "5.2.1",
+    "helmet": "8.3.0",
+    "mongodb": "7.6.0"
+  },
+  "devDependencies": {
+    "@aufnehmen/testing": "workspace:*",
+    "@types/express": "5.0.6",
+    "@types/supertest": "6.0.3",
+    "supertest": "7.2.2"
+  }
+}
